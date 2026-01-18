@@ -1,218 +1,298 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>朱子青 — 个人主页</title>
-<style>
-:root{
-  --bg:#f6f7f8;
-  --card:#ffffff;
-  --muted:#6b7280;
-  --accent:#111111;
-  --glass: rgba(255,255,255,0.6);
-  --radius:18px;
-  --gap:18px;
-  --shadow: 0 6px 24px rgba(17,17,17,0.08);
-  --tag-bg: rgba(17,17,17,0.04);
-  --tag-border: rgba(17,17,17,0.06);
-}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>朱子青 — 个人品牌</title>
+  <meta name="description" content="朱子青 — 前端与界面设计 | 个人作品集与博客" />
+  <style>
+    :root{
+      --bg:#f6f7f8;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent:#0b1220;
+      --accent-2:#111827;
+      --glass: rgba(255,255,255,0.6);
+      --radius:16px;
+      --gap:18px;
+      --shadow: 0 10px 30px rgba(11,18,32,0.07);
+      --glass-strong: rgba(255,255,255,0.8);
+      --glass-dark: rgba(10,14,20,0.5);
+    }
+    [data-theme="dark"]{
+      --bg:linear-gradient(180deg,#0b0f13,#0e1419);
+      --card:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.02));
+      --muted:#9aa4b2;
+      --accent:#e6eefb;
+      --accent-2:#cbd5e1;
+      --shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased;
+      background: var(--bg);
+      color:var(--accent);
+      line-height:1.45;
+    }
 
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  -webkit-font-smoothing:antialiased;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.4), transparent 60%),
-    var(--bg);
-  color:var(--accent);
-  display:grid;
-  place-items:center;
-  padding:40px;
-}
+    /* layout */
+    .container{max-width:1100px;margin:0 auto;padding:28px 20px}
+    header{display:flex;align-items:center;gap:12px;justify-content:space-between;padding:8px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,#e6eefb,#f6f4ff);display:grid;place-items:center;font-weight:700;color:var(--accent-2);box-shadow:var(--shadow)}
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:10px;font-weight:600}
+    nav a:hover{color:var(--accent);background:rgba(0,0,0,0.03)}
 
-.profile {
-  width:100%;
-  max-width:920px;
-  background:linear-gradient(180deg,var(--card),rgba(255,255,255,0.98));
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  padding:calc(var(--gap) * 2);
-  display:flex;
-  gap:34px;
-  align-items:center;
-}
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:center;padding:48px 0}
+    .hero-left h1{font-size:34px;margin:0 0 12px}
+    .hero-left p{margin:0 0 18px;color:var(--muted);max-width:60ch}
+    .cta{display:flex;gap:12px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:none;background:var(--accent-2);color:white;font-weight:700;cursor:pointer}
+    .btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(0,0,0,0.06)}
 
-/* 左侧头像区域 */
-.avatar {
-  flex:0 0 140px;
-  width:140px;
-  height:140px;
-  border-radius:20px;
-  background: linear-gradient(135deg,#f3f4f6,#ffffff);
-  display:grid;
-  place-items:center;
-  box-shadow: 0 8px 30px rgba(16,24,40,0.06), inset 0 1px 0 rgba(255,255,255,0.6);
-  overflow:hidden;
-  border:1px solid rgba(16,24,40,0.04);
-}
-.avatar img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
+    /* hero visual */
+    .hero-right{position:relative;height:320px;border-radius:18px;overflow:hidden;background:var(--card);box-shadow:var(--shadow);display:grid;place-items:center}
+    .avatar-visual{width:220px;height:220px;border-radius:16px;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#e6eefb,#f6f4ff);}
+    .avatar-visual img{width:100%;height:100%;object-fit:cover}
+    /* subtle animated gradient */
+    .bg-anim{position:absolute;inset:0;filter:blur(40px);opacity:0.55;background:linear-gradient(120deg,#bfe9ff,#f6f4ff,#dfe7ff);transform:translateZ(0);animation:shift 8s linear infinite}
+    @keyframes shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 
-/* 右侧信息区域 */
+    /* sections */
+    section{padding:40px 0;border-top:1px solid rgba(0,0,0,0.03)}
+    .section-title{display:flex;align-items:baseline;gap:12px;margin-bottom:18px}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow);transition:transform .18s ease,box-shadow .18s ease}
+    .card:hover{transform:translateY(-6px)}
 
-.info{
-  flex:1;
-  min-width:0;
-}
-.headline{
-  display:flex;
-  align-items:baseline;
-  gap:14px;
-  flex-wrap:wrap;
-}
-.name{
-  font-size:28px;
-  font-weight:700;
-  letter-spacing:-0.3px;
-}
-.role{
-  color:var(--muted);
-  font-weight:600;
-  font-size:13px;
-  padding:6px 10px;
-  border-radius:999px;
-  background:var(--tag-bg);
-  border:1px solid var(--tag-border);
-  margin-left:auto;
-}
+    /* project card flip */
+    .proj{perspective:1200px}
+    .proj-inner{position:relative;width:100%;height:220px;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+    .proj:hover .proj-inner{transform:rotateY(12deg)}
+    .proj-front,.proj-back{position:absolute;inset:0;border-radius:12px;overflow:hidden}
+    .proj-front img{width:100%;height:100%;object-fit:cover}
+    .proj-info{padding:12px}
 
-.bio{
-  margin-top:14px;
-  color:#222;
-  font-size:15px;
-  line-height:1.6;
-  max-width:60ch;
-  opacity:0.95;
-}
+    /* fun features */
+    .controls{display:flex;gap:8px;align-items:center}
 
-/* 技能标签 */
-.tags{
-  margin-top:18px;
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-.tag{
-  font-size:13px;
-  color:var(--muted);
-  padding:8px 12px;
-  border-radius:999px;
-  background:var(--tag-bg);
-  border:1px solid var(--tag-border);
-}
+    /* contact */
+    .contact-form{display:flex;flex-direction:column;gap:10px}
+    input,textarea{padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.06);background:transparent;color:var(--accent);min-width:0}
+    input::placeholder,textarea::placeholder{color:var(--muted)}
 
-/* 按钮 */
-.actions{
-  margin-top:20px;
-  display:flex;
-  gap:12px;
-  align-items:center;
-}
-.btn{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  padding:10px 14px;
-  border-radius:999px;
-  text-decoration:none;
-  font-weight:600;
-  font-size:14px;
-  transition:transform .14s ease, box-shadow .14s ease;
-  box-shadow:none;
-  border:1px solid rgba(16,24,40,0.06);
-  background:transparent;
-  color:var(--accent);
-}
-.btn:active{transform:translateY(1px)}
-.btn.primary{
-  background:#111;
-  color:#fff;
-  border-color:transparent;
-  box-shadow: 0 6px 20px rgba(17,17,17,0.12);
-}
-.btn .icon{
-  width:18px;
-  height:18px;
-  display:inline-block;
-}
+    footer{padding:24px 0;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
 
-/* 响应式 */
-@media (max-width:720px){
-  .profile{flex-direction:column;align-items:center;padding:28px}
-  .avatar{width:120px;height:120px;border-radius:16px}
-  .headline{width:100%}
-  .role{margin-left:0}
-  .info{text-align:center}
-  .actions{justify-content:center}
-}
-</style>
+    /* responsive */
+    @media (max-width:960px){.hero{grid-template-columns:1fr 300px}}
+    @media (max-width:720px){
+      .container{padding:20px}
+      .hero{grid-template-columns:1fr;gap:20px}
+      .hero-right{height:220px}
+      header{gap:8px}
+      nav{display:none}
+    }
+  </style>
 </head>
-<body>
-  <main class="profile" role="main" aria-label="个人资料卡">
-    <div class="avatar" aria-hidden="true">
-      <!-- 默认 SVG 头像；你可以替换为 <img src="avatar.jpg" alt="朱子青"> -->
-      <svg viewBox="0 0 120 120" width="100" height="100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="头像占位">
-        <defs>
-          <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
-            <stop offset="0" stop-color="#e6eefb"/>
-            <stop offset="1" stop-color="#f6f4ff"/>
-          </linearGradient>
-        </defs>
-        <rect width="120" height="120" rx="18" fill="url(#g)"/>
-        <text x="50%" y="58%" dominant-baseline="middle" text-anchor="middle" font-family="-apple-system,Segoe UI,Roboto" font-size="36" fill="#111" font-weight="700">朱子青</text>
-      </svg>
-    </div>
-
-    <div class="info">
-      <div class="headline">
+<body data-theme="light">
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">朱子</div>
         <div>
-          <div class="name">朱子青</div>
-          <div style="color:var(--muted);font-size:13px;margin-top:6px;">学生 · 专注前端与界面设计</div>
+          <div style="font-weight:800">朱子青</div>
+          <div style="font-size:12px;color:var(--muted)">前端 · 界面设计</div>
         </div>
-        <div class="role">学生</div>
       </div>
-
-      <p class="bio">喜欢极简设计、关注交互细节与性能优化。正在学习现代前端技术栈，热衷于把想法做成可用且美观的界面。</p>
-
-      <div class="tags" aria-label="技能标签">
-        <div class="tag">HTML</div>
-        <div class="tag">CSS / SCSS</div>
-        <div class="tag">JavaScript</div>
-        <div class="tag">React</div>
-        <div class="tag">UI 设计</div>
+      <nav aria-label="主导航">
+        <a href="#about">关于</a>
+        <a href="#projects">作品</a>
+        <a href="#fun">趣味</a>
+        <a href="#contact">联系</a>
+      </nav>
+      <div class="controls">
+        <button id="themeToggle" class="btn ghost" aria-label="切换主题">切换主题</button>
+        <div id="visitor" style="padding:8px 10px;border-radius:10px;background:transparent;color:var(--muted);font-weight:600">访客: 0</div>
       </div>
+    </header>
 
-      <div class="actions">
-        <a class="btn primary" href="https://github.com/" target="_blank" rel="noopener" aria-label="前往 GitHub">
-          <span class="icon" aria-hidden="true">
-            <!-- 简易 GitHub 图标 -->
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M12 .5C5.73.5.75 5.48.75 11.76c0 4.93 3.19 9.11 7.61 10.58.56.1.76-.24.76-.53 0-.26-.01-1.12-.02-2.03-3.09.67-3.74-1.49-3.74-1.49-.5-1.28-1.22-1.62-1.22-1.62-.99-.68.08-.67.08-.67 1.1.08 1.68 1.13 1.68 1.13.97 1.66 2.56 1.18 3.19.9.1-.7.38-1.18.69-1.45-2.47-.28-5.07-1.24-5.07-5.52 0-1.22.44-2.21 1.15-2.99-.12-.28-.5-1.41.11-2.94 0 0 .94-.3 3.08 1.15a10.7 10.7 0 012.8-.38c.95.01 1.9.13 2.8.38 2.13-1.46 3.07-1.15 3.07-1.15.62 1.53.24 2.66.12 2.94.72.78 1.14 1.77 1.14 2.99 0 4.29-2.61 5.24-5.09 5.52.39.34.73 1.01.73 2.04 0 1.47-.01 2.66-.01 3.02 0 .29.19.64.77.53 4.41-1.48 7.59-5.65 7.59-10.58C23.25 5.48 18.27.5 12 .5z"/>
-            </svg>
-          </span>
-          查看我的 GitHub
-        </a>
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-left">
+          <h1>你好，我是朱子青 — 极简前端与界面设计</h1>
+          <p>学生 &middot; 专注于前端工程与交互细节；喜欢把复杂的问题简化为优雅的界面与良好的体验。</p>
+          <div class="cta">
+            <a class="btn" href="#projects">查看作品</a>
+            <button class="btn ghost" id="contactCTABtn">联系我</button>
+          </div>
+          <p style="margin-top:16px;color:var(--muted)">设计理念：简单、有序、让人愉悦。</p>
+        </div>
 
-        <!-- 可添加更多按钮，如简历、联系等 -->
+        <div class="hero-right" aria-hidden="false">
+          <div class="bg-anim" aria-hidden="true"></div>
+          <div class="avatar-visual" role="img" aria-label="朱子青头像">
+            <!-- 占位头像，可替换为真实图片 -->
+            <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='100%25' height='100%25' rx='24' fill='%23e6eefb'/%3E%3Ctext x='50%25' y='54%25' font-family='-apple-system,Segoe UI,Roboto' font-size='48' text-anchor='middle' fill='%23111'%3E朱子青%3C/text%3E%3C/svg%3E" alt="朱子青">
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="section-title"><h2>关于我</h2><div style="color:var(--muted);font-weight:600">完整的我 · 学习与生活并重</div></div>
+        <div class="cards">
+          <div class="card">
+            <h3>学术与研究</h3>
+            <p style="color:var(--muted)">本科专业：XXXXX；研究方向：睡眠与认知（示例）。参与若干项目与论文发表。</p>
+          </div>
+          <div class="card">
+            <h3>生活与兴趣</h3>
+            <p style="color:var(--muted)">爱好摄影、跑步与阅读心理学。热衷于 UI 设计与动效实现。</p>
+          </div>
+          <div class="card">
+            <h3>时间线</h3>
+            <ul style="color:var(--muted);padding-left:18px;margin:0">
+              <li>2021 — 本科入学 / 主修前端相关课程</li>
+              <li>2023 — 参与睡眠研究项目，负责数据可视化</li>
+              <li>2024 — 构建个人作品集并持续发布小项目</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="section-title"><h2>作品集</h2><div style="color:var(--muted);font-weight:600">项目示例与演示</div></div>
+        <div class="cards">
+          <div class="proj card">
+            <div class="proj-inner">
+              <div class="proj-front">
+                <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23dfeaff'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' font-family='-apple-system,Segoe UI' font-size='28' fill='%23111'%3E示例项目封面%3C/text%3E%3C/svg%3E" alt="project">
+              </div>
+              <div class="proj-back" style="display:flex;align-items:flex-end;padding:12px;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.06))">
+                <div class="proj-info">
+                  <h4 style="margin:0">示例项目 — 睡眠研究可视化</h4>
+                  <p style="color:var(--muted);margin:6px 0">技术栈：D3 / React / Node</p>
+                  <div style="display:flex;gap:8px">
+                    <a class="btn ghost" href="#">演示</a>
+                    <a class="btn" href="#">源码</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>开发项目：个人小工具</h4>
+            <p style="color:var(--muted)">一款小型前端工具集，包含时间转换、颜色工具等。</p>
+          </div>
+
+          <div class="card">
+            <h4>科研笔记与论文</h4>
+            <p style="color:var(--muted)">睡眠研究相关的实验设计与结果可视化笔记。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="fun">
+        <div class="section-title"><h2>有趣功能</h2><div style="color:var(--muted);font-weight:600">交互与小玩意儿</div></div>
+        <div class="cards">
+          <div class="card">
+            <h4>主题切换</h4>
+            <p style="color:var(--muted)">支持亮/暗两套主题，切换后界面会记住你的偏好。</p>
+          </div>
+          <div class="card">
+            <h4>访客计数器</h4>
+            <p style="color:var(--muted)">简单的本地访客计数（示例）。</p>
+          </div>
+          <div class="card">
+            <h4>动态背景</h4>
+            <p style="color:var(--muted)">Hero 区使用 CSS 渐变动效，带来轻盈体验。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="blog">
+        <div class="section-title"><h2>博客 / 日志（示例）</h2><div style="color:var(--muted);font-weight:600">心理学笔记 & 开发随笔</div></div>
+        <div class="cards">
+          <div class="card"><h4>如何做可解释的实验可视化</h4><p style="color:var(--muted)">简短摘要与标签。</p></div>
+          <div class="card"><h4>从设计到实现：颜色系统实践</h4><p style="color:var(--muted)">主题与无障碍考虑。</p></div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="section-title"><h2>联系我</h2><div style="color:var(--muted);font-weight:600">邮箱、GitHub 与简易留言</div></div>
+        <div style="display:grid;grid-template-columns:1fr 320px;gap:20px">
+          <div>
+            <p style="color:var(--muted)">邮箱：2206603382@qq.com</p>
+            <p style="color:var(--muted)">GitHub：<a href="https://github.com/" target="_blank">Zhuziqing202</a></p>
+            <p style="color:var(--muted)">更多社交：B站 / 微信（可替换）</p>
+          </div>
+          <div>
+            <form class="contact-form" onsubmit="return handleContact(event)">
+              <input type="text" id="name" placeholder="你的名字" required />
+              <input type="email" id="email" placeholder="你的邮箱" required />
+              <textarea id="message" rows="4" placeholder="留言内容（示例不会发送）" required></textarea>
+              <div style="display:flex;gap:8px">
+                <button class="btn" type="submit">发送</button>
+                <button type="button" class="btn ghost" onclick="fillDemo()">示例填充</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© 2026 朱子青</div>
+      <div style="display:flex;gap:8px">
+        <a href="#" style="color:var(--muted)">GitHub</a>
+        <a href="#" style="color:var(--muted)">邮箱</a>
       </div>
-    </div>
-  </main>
+    </footer>
+  </div>
+
+  <script>
+    // 主题切换并记忆偏好
+    const themeToggle = document.getElementById('themeToggle');
+    const root = document.body;
+    const stored = localStorage.getItem('zhuu_theme');
+    if(stored) root.setAttribute('data-theme', stored);
+    function toggleTheme(){
+      const cur = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', cur);
+      localStorage.setItem('zhuu_theme', cur);
+    }
+    themeToggle.addEventListener('click', toggleTheme);
+
+    // 访客计数（本地示例）
+    const visitorEl = document.getElementById('visitor');
+    let visits = Number(localStorage.getItem('zhuu_visits') || 0);
+    visits += 1; localStorage.setItem('zhuu_visits', visits);
+    visitorEl.textContent = '访客: ' + visits;
+
+    // 联系表单示例处理
+    function handleContact(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      alert('已收到你的留言（示例）：\n' + name + '，谢谢！');
+      e.target.reset();
+      return false;
+    }
+    function fillDemo(){
+      document.getElementById('name').value = '访客示例';
+      document.getElementById('email').value = 'example@mail.com';
+      document.getElementById('message').value = '你好，这是示例留言。';
+    }
+
+    // CTA 跳转到表单
+    document.getElementById('contactCTABtn').addEventListener('click',()=>{
+      location.hash = '#contact';
+      setTimeout(()=>{document.getElementById('name').focus()},300);
+    });
+  </script>
 </body>
 </html>
