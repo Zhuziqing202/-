@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>技术项目 #1 — 朱子青</title>
+  
+  <style>
+    /* 设计系统变量 */
+    :root {
+      --color-bg: #fafbfc;
+      --color-card: #ffffff;
+      --color-text: #1a202c;
+      --color-text-light: #718096;
+      --color-border: #e2e8f0;
+      --color-accent: #4f46e5;
+      --color-accent-light: #eef2ff;
+      
+      --sp-xs: 4px;
+      --sp-sm: 8px;
+      --sp-md: 16px;
+      --sp-lg: 24px;
+      --sp-xl: 32px;
+      --sp-2xl: 48px;
+      
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08);
+      
+      --transition-fast: 150ms ease;
+      --transition-base: 250ms ease;
+    }
+    
+    /* 重置样式 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* 容器和布局 */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 var(--sp-md);
+    }
+    
+    /* 头部导航 */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 251, 252, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--sp-md) 0;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 var(--sp-md);
+    }
+    
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-sm);
+      padding: var(--sp-sm) var(--sp-md);
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      color: var(--color-accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    
+    .back-button:hover {
+      border-color: var(--color-accent);
+      box-shadow: var(--shadow-md);
+    }
+    
+    /* 主要内容 */
+    main {
+      padding: var(--sp-2xl) 0;
+    }
+    
+    .page-title {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: var(--sp-md);
+      letter-spacing: -1px;
+    }
+    
+    .page-meta {
+      display: flex;
+      gap: var(--sp-lg);
+      margin-bottom: var(--sp-2xl);
+      color: var(--color-text-light);
+      font-size: 14px;
+    }
+    
+    .page-meta span {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-sm);
+    }
+    
+    /* 内容区域 */
+    .content-section {
+      margin-bottom: var(--sp-2xl);
+    }
+    
+    .content-section h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: var(--sp-lg);
+      color: var(--color-text);
+      border-bottom: 2px solid var(--color-accent-light);
+      padding-bottom: var(--sp-md);
+    }
+    
+    .content-section p {
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: var(--sp-lg);
+      color: var(--color-text);
+    }
+    
+    .content-section ul,
+    .content-section ol {
+      margin-left: var(--sp-lg);
+      margin-bottom: var(--sp-lg);
+      color: var(--color-text);
+    }
+    
+    .content-section li {
+      margin-bottom: var(--sp-md);
+      line-height: 1.8;
+    }
+    
+    .code-block {
+      background: #f5f5f5;
+      border-left: 4px solid var(--color-accent);
+      padding: var(--sp-lg);
+      border-radius: var(--radius-lg);
+      margin: var(--sp-xl) 0;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 13px;
+      overflow-x: auto;
+      color: #333;
+      line-height: 1.5;
+    }
+    
+    /* 强调区域 */
+    .highlight-box {
+      background: var(--color-accent-light);
+      border-left: 4px solid var(--color-accent);
+      padding: var(--sp-lg);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--sp-xl);
+    }
+    
+    .highlight-box p {
+      margin: 0;
+      color: var(--color-text);
+      font-weight: 500;
+    }
+    
+    /* 图片占位符 */
+    .image-placeholder {
+      background: linear-gradient(135deg, var(--color-accent-light) 0%, rgba(79, 70, 229, 0.05) 100%);
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: var(--sp-xl) 0;
+      color: var(--color-text-light);
+      font-size: 14px;
+    }
+    
+    /* 页脚 */
+    footer {
+      border-top: 1px solid var(--color-border);
+      padding: var(--sp-2xl) 0;
+      color: var(--color-text-light);
+      font-size: 14px;
+      margin-top: var(--sp-2xl);
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--sp-lg);
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: var(--sp-lg);
+    }
+    
+    .footer-links a {
+      color: var(--color-text-light);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+    
+    .footer-links a:hover {
+      color: var(--color-accent);
+    }
+    
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .page-title {
+        font-size: 32px;
+      }
+      
+      .page-meta {
+        flex-direction: column;
+        gap: var(--sp-md);
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 头部导航 -->
+  <header>
+    <div class="header-content">
+      <a href="../index.html" class="back-button">← 返回首页</a>
+      <span style="color: var(--color-text-light); font-size: 14px;">技术项目</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- 页面标题 -->
+      <h1 class="page-title">技术项目 #1</h1>
+      
+      <!-- 元信息 -->
+      <div class="page-meta">
+        <span>📅 发布时间：2026年1月</span>
+        <span>⏱️ 阅读时间：约 5 分钟</span>
+        <span>🏷️ 标签：技术 / 编程 / AI</span>
+      </div>
+
+      <!-- 项目摘要 -->
+      <div class="highlight-box">
+        <p>
+          💡 <strong>项目摘要：</strong>这是一个展示你如何与AI合作、将创意转化为代码的技术项目。在这里介绍项目的核心功能和创意。
+        </p>
+      </div>
+
+      <!-- 项目灵感 -->
+      <section class="content-section">
+        <h2>项目灵感</h2>
+        <p>
+          【说明你这个项目的创意来源：】
+        </p>
+        <ul>
+          <li>解决了什么问题或满足了什么需求</li>
+          <li>创意的闪现时刻</li>
+          <li>为什么选择这个技术方案</li>
+        </ul>
+      </section>
+
+      <!-- 技术栈 -->
+      <section class="content-section">
+        <h2>技术栈</h2>
+        <p>
+          这个项目使用的主要技术和工具：
+        </p>
+        <ul>
+          <li><strong>前端：</strong>HTML, CSS, JavaScript / React / Vue 等</li>
+          <li><strong>后端：</strong>Node.js / Python / 其他技术栈</li>
+          <li><strong>其他工具：</strong>Git, Docker, AI 工具等</li>
+        </ul>
+      </section>
+
+      <!-- 项目特色 -->
+      <section class="content-section">
+        <h2>项目特色</h2>
+        <p>
+          这个项目与众不同的地方：
+        </p>
+        <ul>
+          <li>功能创新点</li>
+          <li>用户体验设计</li>
+          <li>代码架构的优化思考</li>
+        </ul>
+      </section>
+
+      <!-- 代码示例 -->
+      <section class="content-section">
+        <h2>核心代码</h2>
+        <p>
+          项目中的关键代码片段：
+        </p>
+        <div class="code-block">
+// 在这里放置你的代码示例
+function example() {
+  // 这是你想展示的核心逻辑
+  console.log('例子代码');
+}
+        </div>
+        <p>
+          这段代码的关键在于...
+        </p>
+      </section>
+
+      <!-- 项目截图或演示 -->
+      <div class="image-placeholder">
+        [项目界面截图或功能演示]
+      </div>
+
+      <!-- 遇到的挑战 -->
+      <section class="content-section">
+        <h2>开发中的挑战与解决</h2>
+        <p>
+          【分享开发过程中遇到的问题：】
+        </p>
+        <ul>
+          <li><strong>挑战 1：</strong>遇到了什么问题，怎样解决的</li>
+          <li><strong>挑战 2：</strong>调试过程中的有趣发现</li>
+          <li><strong>挑战 3：</strong>性能优化或用户反馈的改进</li>
+        </ul>
+      </section>
+
+      <!-- 学到的东西 -->
+      <section class="content-section">
+        <h2>关键收获</h2>
+        <p>
+          通过这个项目，我学到：
+        </p>
+        <p>
+          这个开发经历对我的技术成长和思维方式都有重要帮助...
+        </p>
+      </section>
+
+      <!-- 部署和使用 -->
+      <section class="content-section">
+        <h2>如何使用</h2>
+        <p>
+          如果你对这个项目感兴趣，可以：
+        </p>
+        <ul>
+          <li>访问项目的在线演示</li>
+          <li>查看 GitHub 上的源代码</li>
+          <li>本地运行和修改项目</li>
+        </ul>
+      </section>
+
+      <!-- 相关链接 -->
+      <section class="content-section">
+        <h2>相关资源</h2>
+        <ul>
+          <li><a href="https://github.com" target="_blank" style="color: var(--color-accent);">GitHub 仓库 →</a></li>
+          <li><a href="../index.html#projects" style="color: var(--color-accent);">查看其他作品 →</a></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <!-- 页脚 -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div>
+          © 2026 朱子青 | 基于 MIT 协议开源
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com" target="_blank">GitHub</a>
+          <a href="mailto:your-email@example.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

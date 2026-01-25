@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>古建筑 — 朱子青</title>
+  
+  <style>
+    :root {
+      --color-bg: #fafbfc;
+      --color-card: #ffffff;
+      --color-text: #1a202c;
+      --color-text-light: #718096;
+      --color-border: #e2e8f0;
+      --color-accent: #4f46e5;
+      --color-accent-light: #eef2ff;
+      --sp-xs: 4px; --sp-sm: 8px; --sp-md: 16px; --sp-lg: 24px; --sp-xl: 32px; --sp-2xl: 48px;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-xl: 20px;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08);
+      --transition-fast: 150ms ease; --transition-base: 250ms ease;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: var(--color-bg); color: var(--color-text); line-height: 1.6; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    
+    .container { max-width: 900px; margin: 0 auto; padding: 0 var(--sp-md); }
+    
+    header { position: sticky; top: 0; z-index: 100; background: rgba(250, 251, 252, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid var(--color-border); padding: var(--sp-md) 0; }
+    .header-content { display: flex; justify-content: space-between; align-items: center; max-width: 900px; margin: 0 auto; padding: 0 var(--sp-md); }
+    .back-button { display: inline-flex; align-items: center; gap: var(--sp-sm); padding: var(--sp-sm) var(--sp-md); background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); color: var(--color-accent); text-decoration: none; font-weight: 600; font-size: 14px; cursor: pointer; transition: all var(--transition-fast); }
+    .back-button:hover { border-color: var(--color-accent); box-shadow: var(--shadow-md); }
+    
+    main { padding: var(--sp-2xl) 0; }
+    .page-title { font-size: 42px; font-weight: 700; margin-bottom: var(--sp-md); letter-spacing: -1px; }
+    .page-subtitle { font-size: 18px; color: var(--color-text-light); margin-bottom: var(--sp-2xl); line-height: 1.8; }
+    
+    .content-section { margin-bottom: var(--sp-2xl); }
+    .content-section h2 { font-size: 24px; font-weight: 600; margin-bottom: var(--sp-lg); color: var(--color-text); border-bottom: 2px solid var(--color-accent-light); padding-bottom: var(--sp-md); }
+    .content-section h3 { font-size: 18px; font-weight: 600; margin-top: var(--sp-xl); margin-bottom: var(--sp-md); color: var(--color-text); }
+    .content-section p { font-size: 16px; line-height: 1.8; margin-bottom: var(--sp-lg); color: var(--color-text); }
+    .content-section ul, .content-section ol { margin-left: var(--sp-lg); margin-bottom: var(--sp-lg); color: var(--color-text); }
+    .content-section li { margin-bottom: var(--sp-md); line-height: 1.8; }
+    
+    .interest-card { background: var(--color-accent-light); border-left: 4px solid var(--color-accent); padding: var(--sp-lg); border-radius: var(--radius-lg); margin-bottom: var(--sp-xl); }
+    .interest-card h4 { font-size: 16px; font-weight: 600; margin-bottom: var(--sp-md); color: var(--color-accent); }
+    .interest-card p { margin-bottom: var(--sp-md); color: var(--color-text); }
+    .interest-card p:last-child { margin-bottom: 0; }
+    
+    .building-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--sp-lg); margin: var(--sp-xl) 0; }
+    .building-card { background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--sp-lg); text-align: center; transition: all var(--transition-fast); }
+    .building-card:hover { border-color: var(--color-accent); box-shadow: var(--shadow-md); transform: translateY(-4px); }
+    .building-emoji { font-size: 32px; display: block; margin-bottom: var(--sp-md); }
+    .building-card strong { display: block; margin-bottom: var(--sp-sm); color: var(--color-text); }
+    .building-card p { font-size: 13px; color: var(--color-text-light); margin-bottom: 0; }
+    
+    .image-placeholder { background: linear-gradient(135deg, var(--color-accent-light) 0%, rgba(79, 70, 229, 0.05) 100%); aspect-ratio: 16 / 9; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin: var(--sp-xl) 0; color: var(--color-text-light); font-size: 14px; }
+    
+    footer { border-top: 1px solid var(--color-border); padding: var(--sp-2xl) 0; color: var(--color-text-light); font-size: 14px; margin-top: var(--sp-2xl); }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--sp-lg); }
+    .footer-links { display: flex; gap: var(--sp-lg); }
+    .footer-links a { color: var(--color-text-light); text-decoration: none; transition: color var(--transition-fast); }
+    .footer-links a:hover { color: var(--color-accent); }
+    
+    @media (max-width: 768px) {
+      .page-title { font-size: 32px; }
+      .page-subtitle { font-size: 16px; }
+      .building-grid { grid-template-columns: 1fr; }
+      .footer-content { flex-direction: column; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="../index.html" class="back-button">← 返回首页</a>
+      <span style="color: var(--color-text-light); font-size: 14px;">兴趣探索</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1 class="page-title">🏛️ 古建筑入门</h1>
+      <p class="page-subtitle">
+        推开古建筑的大门，从斗拱与砖石中寻找历史的余温。不是专家，而是一个充满好奇心的探索者。
+      </p>
+
+      <section class="content-section">
+        <h2>为什么是古建筑？</h2>
+        <p>
+          古建筑不仅仅是一栋房子。它是历史的见证者，文化的承载体，工程学的奇迹。每一根梁、每一块砖都在诉说一个故事。
+        </p>
+        
+        <div class="interest-card">
+          <h4>🏗️ 古建筑的魅力</h4>
+          <p>
+            在现代化冲击下，这些古建筑正在消失。救救它们的唯一方式，就是理解它们、欣赏它们、记录它们。
+          </p>
+          <p>
+            而且，学习古建筑教会我们一种不同的思考方式——如何在没有现代技术的情况下，用智慧和工艺创造永恒的美。
+          </p>
+        </div>
+        
+        <h3>📚 我在学什么</h3>
+        <ul>
+          <li><strong>建筑术语：</strong>斗拱、榫卯、飞檐、回廊……学会这些词汇才能真正看懂建筑</li>
+          <li><strong>朝代风格：</strong>唐宋明清，每个时代都有其审美和技术特征</li>
+          <li><strong>地域特色：</strong>北方的庄严、南方的秀美、少数民族的独特风格</li>
+          <li><strong>构造原理：</strong>没有钉子的木结构如何在地震中屹立不倒</li>
+          <li><strong>装饰艺术：</strong>彩绘、木雕、砖雕，每一种都是艺术</li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <h2>印象最深的建筑</h2>
+        
+        <div class="building-grid">
+          <div class="building-card">
+            <span class="building-emoji">🏯</span>
+            <strong>故宫</strong>
+            <p>规模宏大，布局精妙的帝制象征</p>
+          </div>
+          
+          <div class="building-card">
+            <span class="building-emoji">🏔️</span>
+            <strong>山西古刹</strong>
+            <p>悬崖峭壁上的建筑奇迹</p>
+          </div>
+          
+          <div class="building-card">
+            <span class="building-emoji">🌉</span>
+            <strong>苏州园林</strong>
+            <p>精致、含蓄的江南审美</p>
+          </div>
+          
+          <div class="building-card">
+            <span class="building-emoji">🕌</span>
+            <strong>清真寺</strong>
+            <p>中华与伊斯兰文化的融合</p>
+          </div>
+          
+          <div class="building-card">
+            <span class="building-emoji">🏘️</span>
+            <strong>古镇老街</strong>
+            <p>日常生活的真实建筑遗迹</p>
+          </div>
+          
+          <div class="building-card">
+            <span class="building-emoji">⛩️</span>
+            <strong>民居建筑</strong>
+            <p>文化印记最深的地方</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="image-placeholder">
+        [古建筑照片或建筑细节特写]
+      </div>
+
+      <section class="content-section">
+        <h2>关键概念速览</h2>
+        
+        <h3>🔨 斗拱（古建筑之魂）</h3>
+        <p>
+          斗拱是中国古建筑最有特色的结构。由一层层的木块（斗）和拱形件（拱）组成，它们不是为了美观，而是为了在梁和柱之间传递和分散荷载。这是古代工匠的天才发明。
+        </p>
+        
+        <h3>🪵 榫卯（木结构的粘合剂）</h3>
+        <p>
+          没有铁钉，古建筑如何屹立数百年？答案在于榫卯——通过木头的凹凸配合，实现牢固的连接。这种工艺需要极高的精准度和经验。
+        </p>
+        
+        <h3>🎨 彩绘（不仅是装饰）</h3>
+        <p>
+          古建筑上的色彩并非仅仅装饰。它们有实际功能——保护木材免受风雨侵蚀。同时，不同的颜色也代表了等级和用途。
+        </p>
+      </section>
+
+      <section class="content-section">
+        <h2>学习资源与方法</h2>
+        
+        <h3>📖 推荐书籍</h3>
+        <ul>
+          <li>《中国古代建筑简史》- 梁思成</li>
+          <li>《古建筑木结构》- 针对结构爱好者</li>
+          <li>《建筑的细节》- 观察和理解的入门书</li>
+        </ul>
+        
+        <h3>🚶 实地考察</h3>
+        <ul>
+          <li>每次旅行都计划参观当地的古建筑</li>
+          <li>带上笔记本，不仅拍照，更要素描和记录细节</li>
+          <li>与当地文化工作者或导游交流，获取深层信息</li>
+          <li>参加古建筑保护志愿者活动</li>
+        </ul>
+        
+        <h3>🎬 网络学习</h3>
+        <ul>
+          <li>古建筑纪录片和视频教程</li>
+          <li>加入古建筑爱好者的社区和论坛</li>
+          <li>参加线上的建筑欣赏课程</li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <h2>当前探索</h2>
+        <p>
+          我正在深入研究中国南北方建筑风格的差异，以及这些差异是如何反映不同地理条件和文化特质的。每一个地方的古建筑都是当地智慧的结晶。
+        </p>
+        <p>
+          同时，我也在思考如何在现代社会中保护和利用这些古建筑，使它们既能保留历史价值，也能为当代生活服务。
+        </p>
+      </section>
+
+      <section class="content-section">
+        <h2>更多兴趣</h2>
+        <ul>
+          <li><a href="./travel.html" style="color: var(--color-accent);">探索极限旅行 →</a></li>
+          <li><a href="./gadgets.html" style="color: var(--color-accent);">数码折腾 →</a></li>
+          <li><a href="./aerospace.html" style="color: var(--color-accent);">仰望太空 →</a></li>
+          <li><a href="../index.html#interests" style="color: var(--color-accent);">返回兴趣魔盒 →</a></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div>
+          © 2026 朱子青 | 基于 MIT 协议开源
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com" target="_blank">GitHub</a>
+          <a href="mailto:your-email@example.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

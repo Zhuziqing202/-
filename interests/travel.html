@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>极限旅行 — 朱子青</title>
+  
+  <style>
+    /* 设计系统变量 */
+    :root {
+      --color-bg: #fafbfc;
+      --color-card: #ffffff;
+      --color-text: #1a202c;
+      --color-text-light: #718096;
+      --color-border: #e2e8f0;
+      --color-accent: #4f46e5;
+      --color-accent-light: #eef2ff;
+      
+      --sp-xs: 4px;
+      --sp-sm: 8px;
+      --sp-md: 16px;
+      --sp-lg: 24px;
+      --sp-xl: 32px;
+      --sp-2xl: 48px;
+      
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08);
+      
+      --transition-fast: 150ms ease;
+      --transition-base: 250ms ease;
+    }
+    
+    /* 重置样式 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* 容器和布局 */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 var(--sp-md);
+    }
+    
+    /* 头部导航 */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 251, 252, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--sp-md) 0;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 var(--sp-md);
+    }
+    
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-sm);
+      padding: var(--sp-sm) var(--sp-md);
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      color: var(--color-accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    
+    .back-button:hover {
+      border-color: var(--color-accent);
+      box-shadow: var(--shadow-md);
+    }
+    
+    /* 主要内容 */
+    main {
+      padding: var(--sp-2xl) 0;
+    }
+    
+    .page-title {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: var(--sp-md);
+      letter-spacing: -1px;
+    }
+    
+    .page-subtitle {
+      font-size: 18px;
+      color: var(--color-text-light);
+      margin-bottom: var(--sp-2xl);
+      line-height: 1.8;
+    }
+    
+    /* 内容区域 */
+    .content-section {
+      margin-bottom: var(--sp-2xl);
+    }
+    
+    .content-section h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: var(--sp-lg);
+      color: var(--color-text);
+      border-bottom: 2px solid var(--color-accent-light);
+      padding-bottom: var(--sp-md);
+    }
+    
+    .content-section h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: var(--sp-xl);
+      margin-bottom: var(--sp-md);
+      color: var(--color-text);
+    }
+    
+    .content-section p {
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: var(--sp-lg);
+      color: var(--color-text);
+    }
+    
+    .content-section ul,
+    .content-section ol {
+      margin-left: var(--sp-lg);
+      margin-bottom: var(--sp-lg);
+      color: var(--color-text);
+    }
+    
+    .content-section li {
+      margin-bottom: var(--sp-md);
+      line-height: 1.8;
+    }
+    
+    /* 兴趣卡片 */
+    .interest-card {
+      background: var(--color-accent-light);
+      border-left: 4px solid var(--color-accent);
+      padding: var(--sp-lg);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--sp-xl);
+    }
+    
+    .interest-card h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: var(--sp-md);
+      color: var(--color-accent);
+    }
+    
+    .interest-card p {
+      margin-bottom: var(--sp-md);
+      color: var(--color-text);
+    }
+    
+    .interest-card p:last-child {
+      margin-bottom: 0;
+    }
+    
+    /* 目的地/城市列表 */
+    .place-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--sp-lg);
+      margin: var(--sp-xl) 0;
+    }
+    
+    .place-card {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-lg);
+      text-align: center;
+      transition: all var(--transition-fast);
+    }
+    
+    .place-card:hover {
+      border-color: var(--color-accent);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+    
+    .place-emoji {
+      font-size: 32px;
+      display: block;
+      margin-bottom: var(--sp-md);
+    }
+    
+    .place-card strong {
+      display: block;
+      margin-bottom: var(--sp-sm);
+      color: var(--color-text);
+    }
+    
+    .place-card p {
+      font-size: 13px;
+      color: var(--color-text-light);
+      margin-bottom: 0;
+    }
+    
+    /* 图片占位符 */
+    .image-placeholder {
+      background: linear-gradient(135deg, var(--color-accent-light) 0%, rgba(79, 70, 229, 0.05) 100%);
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: var(--sp-xl) 0;
+      color: var(--color-text-light);
+      font-size: 14px;
+    }
+    
+    /* 页脚 */
+    footer {
+      border-top: 1px solid var(--color-border);
+      padding: var(--sp-2xl) 0;
+      color: var(--color-text-light);
+      font-size: 14px;
+      margin-top: var(--sp-2xl);
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--sp-lg);
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: var(--sp-lg);
+    }
+    
+    .footer-links a {
+      color: var(--color-text-light);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+    
+    .footer-links a:hover {
+      color: var(--color-accent);
+    }
+    
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .page-title {
+        font-size: 32px;
+      }
+      
+      .page-subtitle {
+        font-size: 16px;
+      }
+      
+      .place-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 头部导航 -->
+  <header>
+    <div class="header-content">
+      <a href="../index.html" class="back-button">← 返回首页</a>
+      <span style="color: var(--color-text-light); font-size: 14px;">兴趣探索</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- 页面标题 -->
+      <h1 class="page-title">✈️ 极限旅行</h1>
+      <p class="page-subtitle">
+        用双脚丈量城市，用公共交通探索世界。旅行不是为了打卡景点，而是去感受、去体验、去深入理解一个地方的灵魂。
+      </p>
+
+      <!-- 旅行哲学 -->
+      <section class="content-section">
+        <h2>我的旅行哲学</h2>
+        <p>
+          我是一个"特种兵式"旅游爱好者。这不是说我进行高难度的户外运动（虽然有时也会），而是说我旅行的风格——轻装上阵，用最经济的方式，最少的预算，探索最多的可能性。
+        </p>
+        
+        <div class="interest-card">
+          <h4>🎯 旅行的核心</h4>
+          <p>
+            不迷恋五星酒店和高端餐厅。真正有趣的是与陌生人的对话、菜市场的烟火气、公交车上观察的日常生活。
+          </p>
+          <p>
+            旅行是一种冥想，是与自己和世界的对话。
+          </p>
+        </div>
+        
+        <h3>❤️ 为什么痴迷公共交通</h3>
+        <p>
+          很多人觉得公交、火车、地铁是为了快速到达目的地。但对我来说，这些交通本身就是目的地。
+        </p>
+        <ul>
+          <li>能看到真实的本地人生活——通勤的学生、上班族、老年人</li>
+          <li>从地铁线路可以读出这个城市的地理和历史分布</li>
+          <li>每一条线路都有其故事，从城市边缘到中心，从老城区到新开发区</li>
+          <li>经济且高效，充满随遇而安的可能性</li>
+        </ul>
+        
+        <p>
+          有时候最好的旅游体验就是坐在公交车上，听着当地的口音，看着窗外陌生的街景，完全不知道下一站会是什么。
+        </p>
+      </section>
+
+      <!-- 已访问的城市 -->
+      <section class="content-section">
+        <h2>足迹地图</h2>
+        <p>
+          以下是我已经深度游历的城市。每一个都给了我不同的启发。
+        </p>
+        
+        <div class="place-grid">
+          <div class="place-card">
+            <span class="place-emoji">🏮</span>
+            <strong>北京</strong>
+            <p>古都的厚重与现代的碰撞</p>
+          </div>
+          
+          <div class="place-card">
+            <span class="place-emoji">🌃</span>
+            <strong>上海</strong>
+            <p>摩天楼下的浦东，贶弄里的老洋房</p>
+          </div>
+          
+          <div class="place-card">
+            <span class="place-emoji">🏞️</span>
+            <strong>成都</strong>
+            <p>慢生活的城市，茶馆和川菜的诱惑</p>
+          </div>
+          
+          <div class="place-card">
+            <span class="place-emoji">🌊</span>
+            <strong>广州</strong>
+            <p>南方贸易重镇，岭南文化的承载者</p>
+          </div>
+          
+          <div class="place-card">
+            <span class="place-emoji">🏯</span>
+            <strong>杭州</strong>
+            <p>西湖的诗意，钱塘江的气势</p>
+          </div>
+          
+          <div class="place-card">
+            <span class="place-emoji">✨</span>
+            <strong>其他城市...</strong>
+            <p>你的故事还在继续</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 旅行分享 -->
+      <div class="image-placeholder">
+        [旅行照片、地图标记或城市风景]
+      </div>
+
+      <!-- 旅行建议 -->
+      <section class="content-section">
+        <h2>旅行建议</h2>
+        <p>
+          如果你想像我一样去旅行，这些建议或许有帮助：
+        </p>
+        
+        <h3>🎒 打包准则</h3>
+        <ul>
+          <li>一个好的双肩背包，容量 30-40L</li>
+          <li>只带必需的衣物，相信当地的洗衣店</li>
+          <li>下载离线地图和交通应用，减少对网络的依赖</li>
+          <li>准备一本纸质笔记本，记录旅途的思考</li>
+        </ul>
+        
+        <h3>🚌 公交探索法</h3>
+        <ul>
+          <li>第一天：拿一张公交地图，选择几条你感兴趣的线路</li>
+          <li>第二天：坐地铁从一端到另一端，在陌生的站点下车，随意漫步</li>
+          <li>第三天：向本地人请教，去他们日常去的地方，而不是景点</li>
+        </ul>
+        
+        <h3>📸 记录方式</h3>
+        <ul>
+          <li>不一定要拍照。有时候观察和思考比记录更重要</li>
+          <li>如果拍，就拍细节——破旧的楼梯、市场的摊贩、陌生人的脸</li>
+          <li>写游记比发朋友圈更有价值，记录你的想法，而不仅仅是证明你去过</li>
+        </ul>
+      </section>
+
+      <!-- 正在计划 -->
+      <section class="content-section">
+        <h2>下一站</h2>
+        <p>
+          旅行清单上还有很多城市和线路，等待我去探索。每一次旅行都会改变我对世界的理解，每一个城市都有其独特的课程要教我。
+        </p>
+        <p>
+          旅行的美妙之处在于，你永远无法完全规划。最好的时刻往往来自意外的转弯和陌生人的推荐。
+        </p>
+      </section>
+
+      <!-- 相关链接 -->
+      <section class="content-section">
+        <h2>更多兴趣</h2>
+        <ul>
+          <li><a href="./gadgets.html" style="color: var(--color-accent);">探索数码折腾 →</a></li>
+          <li><a href="./architecture.html" style="color: var(--color-accent);">了解古建筑 →</a></li>
+          <li><a href="./aerospace.html" style="color: var(--color-accent);">仰望太空 →</a></li>
+          <li><a href="../index.html#interests" style="color: var(--color-accent);">返回兴趣魔盒 →</a></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <!-- 页脚 -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div>
+          © 2026 朱子青 | 基于 MIT 协议开源
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com" target="_blank">GitHub</a>
+          <a href="mailto:your-email@example.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

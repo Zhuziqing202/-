@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>航空航天 — 朱子青</title>
+  
+  <style>
+    :root {
+      --color-bg: #fafbfc;
+      --color-card: #ffffff;
+      --color-text: #1a202c;
+      --color-text-light: #718096;
+      --color-border: #e2e8f0;
+      --color-accent: #4f46e5;
+      --color-accent-light: #eef2ff;
+      --sp-xs: 4px; --sp-sm: 8px; --sp-md: 16px; --sp-lg: 24px; --sp-xl: 32px; --sp-2xl: 48px;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-xl: 20px;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08);
+      --transition-fast: 150ms ease; --transition-base: 250ms ease;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: var(--color-bg); color: var(--color-text); line-height: 1.6; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    
+    .container { max-width: 900px; margin: 0 auto; padding: 0 var(--sp-md); }
+    
+    header { position: sticky; top: 0; z-index: 100; background: rgba(250, 251, 252, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid var(--color-border); padding: var(--sp-md) 0; }
+    .header-content { display: flex; justify-content: space-between; align-items: center; max-width: 900px; margin: 0 auto; padding: 0 var(--sp-md); }
+    .back-button { display: inline-flex; align-items: center; gap: var(--sp-sm); padding: var(--sp-sm) var(--sp-md); background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); color: var(--color-accent); text-decoration: none; font-weight: 600; font-size: 14px; cursor: pointer; transition: all var(--transition-fast); }
+    .back-button:hover { border-color: var(--color-accent); box-shadow: var(--shadow-md); }
+    
+    main { padding: var(--sp-2xl) 0; }
+    .page-title { font-size: 42px; font-weight: 700; margin-bottom: var(--sp-md); letter-spacing: -1px; }
+    .page-subtitle { font-size: 18px; color: var(--color-text-light); margin-bottom: var(--sp-2xl); line-height: 1.8; }
+    
+    .content-section { margin-bottom: var(--sp-2xl); }
+    .content-section h2 { font-size: 24px; font-weight: 600; margin-bottom: var(--sp-lg); color: var(--color-text); border-bottom: 2px solid var(--color-accent-light); padding-bottom: var(--sp-md); }
+    .content-section h3 { font-size: 18px; font-weight: 600; margin-top: var(--sp-xl); margin-bottom: var(--sp-md); color: var(--color-text); }
+    .content-section p { font-size: 16px; line-height: 1.8; margin-bottom: var(--sp-lg); color: var(--color-text); }
+    .content-section ul, .content-section ol { margin-left: var(--sp-lg); margin-bottom: var(--sp-lg); color: var(--color-text); }
+    .content-section li { margin-bottom: var(--sp-md); line-height: 1.8; }
+    
+    .interest-card { background: var(--color-accent-light); border-left: 4px solid var(--color-accent); padding: var(--sp-lg); border-radius: var(--radius-lg); margin-bottom: var(--sp-xl); }
+    .interest-card h4 { font-size: 16px; font-weight: 600; margin-bottom: var(--sp-md); color: var(--color-accent); }
+    .interest-card p { margin-bottom: var(--sp-md); color: var(--color-text); }
+    .interest-card p:last-child { margin-bottom: 0; }
+    
+    .space-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--sp-lg); margin: var(--sp-xl) 0; }
+    .space-card { background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--sp-lg); text-align: center; transition: all var(--transition-fast); }
+    .space-card:hover { border-color: var(--color-accent); box-shadow: var(--shadow-md); transform: translateY(-4px); }
+    .space-emoji { font-size: 32px; display: block; margin-bottom: var(--sp-md); }
+    .space-card strong { display: block; margin-bottom: var(--sp-sm); color: var(--color-text); }
+    .space-card p { font-size: 13px; color: var(--color-text-light); margin-bottom: 0; }
+    
+    .image-placeholder { background: linear-gradient(135deg, var(--color-accent-light) 0%, rgba(79, 70, 229, 0.05) 100%); aspect-ratio: 16 / 9; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin: var(--sp-xl) 0; color: var(--color-text-light); font-size: 14px; }
+    
+    footer { border-top: 1px solid var(--color-border); padding: var(--sp-2xl) 0; color: var(--color-text-light); font-size: 14px; margin-top: var(--sp-2xl); }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--sp-lg); }
+    .footer-links { display: flex; gap: var(--sp-lg); }
+    .footer-links a { color: var(--color-text-light); text-decoration: none; transition: color var(--transition-fast); }
+    .footer-links a:hover { color: var(--color-accent); }
+    
+    @media (max-width: 768px) {
+      .page-title { font-size: 32px; }
+      .page-subtitle { font-size: 16px; }
+      .space-grid { grid-template-columns: 1fr; }
+      .footer-content { flex-direction: column; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="../index.html" class="back-button">← 返回首页</a>
+      <span style="color: var(--color-text-light); font-size: 14px;">兴趣探索</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1 class="page-title">🚀 航空航天</h1>
+      <p class="page-subtitle">
+        从民航航线到深空探测器，对人类飞向高空的愿望保持永恒的好奇。仰望星空，思考我们的位置。
+      </p>
+
+      <section class="content-section">
+        <h2>为什么是航空航天？</h2>
+        <p>
+          航空航天代表了人类最大胆的梦想——突破地球的束缚，探索未知的宇宙。这不仅是技术的成就，更是人类精神的体现。
+        </p>
+        
+        <div class="interest-card">
+          <h4>🌌 永恒的好奇</h4>
+          <p>
+            从莱特兄弟的第一次飞行到火星探测器，从加加林成为第一个太空人到现在计划登月……每一步都充满了勇气和想象。
+          </p>
+          <p>
+            而我，对这一切保持永恒的好奇——好奇我们是如何做到的，好奇未来我们将走向何处。
+          </p>
+        </div>
+        
+        <h3>✈️ 民航与太空</h3>
+        <p>
+          我对航空航天的兴趣分为两个方向：
+        </p>
+        <ul>
+          <li><strong>民用航空：</strong>飞机的设计、航线的规划、航行安全。每次坐飞机我都会思考——为什么这个庞然大物能飞起来？</li>
+          <li><strong>航天探索：</strong>火箭、卫星、空间站、深空探测。人类如何将设备送上太空，又如何进行探索和科研。</li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <h2>飞行的魅力</h2>
+        <p>
+          每次乘坐飞机，我都会靠窗而坐。从云层之上看地球，看城市的灯光、山脉的轮廓、海洋的颜色——这种视角改变了我对世界的理解。
+        </p>
+        
+        <h3>🛫 航线追踪</h3>
+        <p>
+          我喜欢追踪航线，了解为什么飞机要采取某个特定的路线。地球的自转、气流、地形——这些都影响着航线的设计。
+        </p>
+        <p>
+          每一次飞行都是一次物理学和地理学的结合。
+        </p>
+        
+        <h3>🛸 飞机类型的多样性</h3>
+        <p>
+          从民航客机到战斗机，从直升机到无人机——每一种飞行器都有其独特的设计哲学和应用场景。研究它们如何突破物理极限很迷人。
+        </p>
+      </section>
+
+      <section class="content-section">
+        <h2>太空探索的里程碑</h2>
+        
+        <div class="space-grid">
+          <div class="space-card">
+            <span class="space-emoji">🚀</span>
+            <strong>火箭技术</strong>
+            <p>人类进入太空的钥匙</p>
+          </div>
+          
+          <div class="space-card">
+            <span class="space-emoji">🛰️</span>
+            <strong>卫星应用</strong>
+            <p>改变现代生活的太空资产</p>
+          </div>
+          
+          <div class="space-card">
+            <span class="space-emoji">🌍</span>
+            <strong>空间站</strong>
+            <p>人类在太空的家园</p>
+          </div>
+          
+          <div class="space-card">
+            <span class="space-emoji">🌙</span>
+            <strong>月球探测</strong>
+            <p>登月计划和月球基地梦想</p>
+          </div>
+          
+          <div class="space-card">
+            <span class="space-emoji">🔭</span>
+            <strong>深空观测</strong>
+            <p>詹姆斯韦伯和哈勃的发现</p>
+          </div>
+          
+          <div class="space-card">
+            <span class="space-emoji">🚁</span>
+            <strong>火星任务</strong>
+            <p>人类终将踏足红色星球</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="image-placeholder">
+        [航天照片、火箭发射或地球视角]
+      </div>
+
+      <section class="content-section">
+        <h2>关键概念</h2>
+        
+        <h3>🔬 推进力与轨道力学</h3>
+        <p>
+          飞行的基础是理解牛顿定律——火箭的推力如何克服重力，卫星如何在轨道上平衡引力和向心力。
+        </p>
+        
+        <h3>🌐 地球同步轨道</h3>
+        <p>
+          为什么卫星停在某个位置不动？因为它们的运行速度与地球自转同步，从地表看就像悬浮在空中。
+        </p>
+        
+        <h3>🛡️ 航天器再入大气</h3>
+        <p>
+          从太空返回地球不只是下降，还要承受摩擦热。如何设计隔热盾和着陆系统是一门复杂的工程学。
+        </p>
+      </section>
+
+      <section class="content-section">
+        <h2>我的观察与思考</h2>
+        
+        <h3>🌟 技术进步的加速</h3>
+        <p>
+          过去二十年，私人航天公司的出现改变了太空探索的面貌。SpaceX 的可重用火箭、蓝色起源的月球雄心……这意味着太空即将被商业化，也可能变得更民主化。
+        </p>
+        
+        <h3>🪐 太阳系的探索</h3>
+        <p>
+          我们的探测器正在火星、木星、土星上工作，甚至已经进入星际空间。每一个新的发现都在改写我们对宇宙的理解。
+        </p>
+        
+        <h3>👽 寻找外星生命</h3>
+        <p>
+          詹姆斯韦伯望远镜正在观测遥远星系的大气成分，寻找生命的迹象。这可能是最大的问题——我们是孤独的吗？
+        </p>
+      </section>
+
+      <section class="content-section">
+        <h2>学习资源</h2>
+        
+        <h3>📚 推荐阅读</h3>
+        <ul>
+          <li>《火星与其他地方的生命》- 思考太空探索的哲学意义</li>
+          <li>《太空竞赛史》- 理解冷战如何塑造了航天</li>
+          <li>《火箭工程学基础》- 技术深度学习</li>
+        </ul>
+        
+        <h3>🎬 推荐观看</h3>
+        <ul>
+          <li>NASA 官方纪录片和直播</li>
+          <li>航天机构（CNSA、ESA、ISRO）的任务视频</li>
+          <li>科普纪录片《宇宙》系列</li>
+        </ul>
+        
+        <h3>🔗 追踪动态</h3>
+        <ul>
+          <li>关注航天机构的官方社交媒体</li>
+          <li>加入航空航天爱好者社区</li>
+          <li>订阅相关的科学期刊和新闻</li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <h2>对未来的想象</h2>
+        <p>
+          如果没有航空，世界会是什么样子？如果人类永远被困在地球上呢？
+        </p>
+        <p>
+          正是因为有了飞行，我们的世界变小了，我们的视野变大了。我相信，航空航天的未来将继续改变人类的生活方式——太空旅游、月球基地、火星殖民地，这些不再只是科幻小说。
+        </p>
+        <p>
+          而我，会继续抬起头，仰望星空，满怀好奇。
+        </p>
+      </section>
+
+      <section class="content-section">
+        <h2>更多兴趣</h2>
+        <ul>
+          <li><a href="./travel.html" style="color: var(--color-accent);">探索极限旅行 →</a></li>
+          <li><a href="./gadgets.html" style="color: var(--color-accent);">数码折腾 →</a></li>
+          <li><a href="./architecture.html" style="color: var(--color-accent);">古建筑入门 →</a></li>
+          <li><a href="../index.html#interests" style="color: var(--color-accent);">返回兴趣魔盒 →</a></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div>
+          © 2026 朱子青 | 基于 MIT 协议开源
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com" target="_blank">GitHub</a>
+          <a href="mailto:your-email@example.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数码折腾 — 朱子青</title>
+  
+  <style>
+    :root {
+      --color-bg: #fafbfc;
+      --color-card: #ffffff;
+      --color-text: #1a202c;
+      --color-text-light: #718096;
+      --color-border: #e2e8f0;
+      --color-accent: #4f46e5;
+      --color-accent-light: #eef2ff;
+      --sp-xs: 4px; --sp-sm: 8px; --sp-md: 16px; --sp-lg: 24px; --sp-xl: 32px; --sp-2xl: 48px;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-xl: 20px;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08);
+      --transition-fast: 150ms ease; --transition-base: 250ms ease;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: var(--color-bg); color: var(--color-text); line-height: 1.6; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    
+    .container { max-width: 900px; margin: 0 auto; padding: 0 var(--sp-md); }
+    
+    header { position: sticky; top: 0; z-index: 100; background: rgba(250, 251, 252, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid var(--color-border); padding: var(--sp-md) 0; }
+    .header-content { display: flex; justify-content: space-between; align-items: center; max-width: 900px; margin: 0 auto; padding: 0 var(--sp-md); }
+    .back-button { display: inline-flex; align-items: center; gap: var(--sp-sm); padding: var(--sp-sm) var(--sp-md); background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); color: var(--color-accent); text-decoration: none; font-weight: 600; font-size: 14px; cursor: pointer; transition: all var(--transition-fast); }
+    .back-button:hover { border-color: var(--color-accent); box-shadow: var(--shadow-md); }
+    
+    main { padding: var(--sp-2xl) 0; }
+    .page-title { font-size: 42px; font-weight: 700; margin-bottom: var(--sp-md); letter-spacing: -1px; }
+    .page-subtitle { font-size: 18px; color: var(--color-text-light); margin-bottom: var(--sp-2xl); line-height: 1.8; }
+    
+    .content-section { margin-bottom: var(--sp-2xl); }
+    .content-section h2 { font-size: 24px; font-weight: 600; margin-bottom: var(--sp-lg); color: var(--color-text); border-bottom: 2px solid var(--color-accent-light); padding-bottom: var(--sp-md); }
+    .content-section h3 { font-size: 18px; font-weight: 600; margin-top: var(--sp-xl); margin-bottom: var(--sp-md); color: var(--color-text); }
+    .content-section p { font-size: 16px; line-height: 1.8; margin-bottom: var(--sp-lg); color: var(--color-text); }
+    .content-section ul, .content-section ol { margin-left: var(--sp-lg); margin-bottom: var(--sp-lg); color: var(--color-text); }
+    .content-section li { margin-bottom: var(--sp-md); line-height: 1.8; }
+    
+    .interest-card { background: var(--color-accent-light); border-left: 4px solid var(--color-accent); padding: var(--sp-lg); border-radius: var(--radius-lg); margin-bottom: var(--sp-xl); }
+    .interest-card h4 { font-size: 16px; font-weight: 600; margin-bottom: var(--sp-md); color: var(--color-accent); }
+    .interest-card p { margin-bottom: var(--sp-md); color: var(--color-text); }
+    .interest-card p:last-child { margin-bottom: 0; }
+    
+    .device-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--sp-lg); margin: var(--sp-xl) 0; }
+    .device-card { background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--sp-lg); text-align: center; transition: all var(--transition-fast); }
+    .device-card:hover { border-color: var(--color-accent); box-shadow: var(--shadow-md); transform: translateY(-4px); }
+    .device-emoji { font-size: 32px; display: block; margin-bottom: var(--sp-md); }
+    .device-card strong { display: block; margin-bottom: var(--sp-sm); color: var(--color-text); }
+    .device-card p { font-size: 13px; color: var(--color-text-light); margin-bottom: 0; }
+    
+    .image-placeholder { background: linear-gradient(135deg, var(--color-accent-light) 0%, rgba(79, 70, 229, 0.05) 100%); aspect-ratio: 16 / 9; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin: var(--sp-xl) 0; color: var(--color-text-light); font-size: 14px; }
+    
+    footer { border-top: 1px solid var(--color-border); padding: var(--sp-2xl) 0; color: var(--color-text-light); font-size: 14px; margin-top: var(--sp-2xl); }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--sp-lg); }
+    .footer-links { display: flex; gap: var(--sp-lg); }
+    .footer-links a { color: var(--color-text-light); text-decoration: none; transition: color var(--transition-fast); }
+    .footer-links a:hover { color: var(--color-accent); }
+    
+    @media (max-width: 768px) {
+      .page-title { font-size: 32px; }
+      .page-subtitle { font-size: 16px; }
+      .device-grid { grid-template-columns: 1fr; }
+      .footer-content { flex-direction: column; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="../index.html" class="back-button">← 返回首页</a>
+      <span style="color: var(--color-text-light); font-size: 14px;">兴趣探索</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1 class="page-title">🔧 数码折腾</h1>
+      <p class="page-subtitle">
+        不是追求最新最贵，而是对"电子垃圾"和冷门硬件的热爱。研究一台古老的设备如何运作，折腾本身就是目的。
+      </p>
+
+      <section class="content-section">
+        <h2>折腾的定义</h2>
+        <p>
+          许多人对"折腾"有误解，认为那是浪费时间。但对我来说，折腾是一种创意的表达，是对技术的深度理解。
+        </p>
+        
+        <div class="interest-card">
+          <h4>🎯 为什么折腾？</h4>
+          <p>
+            新的设备很完美，但完美到有些无趣。而那些旧的、坏的、廉价的设备呢？它们需要智慧来让它们重获新生。
+          </p>
+          <p>
+            折腾的过程中，你会学到硬件知识、编程技能，甚至是解决问题的思维方式。
+          </p>
+        </div>
+        
+        <h3>💾 我的折腾对象</h3>
+        <ul>
+          <li><strong>老旧电脑：</strong>Thinkpad、MacBook 等，给它们新的操作系统和用途</li>
+          <li><strong>单板计算机：</strong>树莓派、香蕉派，用来搭建家庭服务器或智能家居</li>
+          <li><strong>数码相机：</strong>老款佳能、尼康，改装固件或用于专用用途</li>
+          <li><strong>手机：</strong>刷机、安装定制 ROM、改造成不同的工具</li>
+          <li><strong>外设：</strong>键盘、鼠标、甚至是家里的电器</li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <h2>我的设备库</h2>
+        
+        <div class="device-grid">
+          <div class="device-card">
+            <span class="device-emoji">💻</span>
+            <strong>主力工作本</strong>
+            <p>日常开发和创意工作</p>
+          </div>
+          
+          <div class="device-card">
+            <span class="device-emoji">⌚</span>
+            <strong>智能手表</strong>
+            <p>定制应用和脚本</p>
+          </div>
+          
+          <div class="device-card">
+            <span class="device-emoji">📱</span>
+            <strong>备用手机</strong>
+            <p>折腾定制 ROM 的试验台</p>
+          </div>
+          
+          <div class="device-card">
+            <span class="device-emoji">🎧</span>
+            <strong>无线耳机</strong>
+            <p>探索蓝牙协议和续航优化</p>
+          </div>
+          
+          <div class="device-card">
+            <span class="device-emoji">📷</span>
+            <strong>复古相机</strong>
+            <p>胶片和数码的混搭</p>
+          </div>
+          
+          <div class="device-card">
+            <span class="device-emoji">🎮</span>
+            <strong>掌上游戏机</strong>
+            <p>模拟器和复古游戏</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="image-placeholder">
+        [设备库照片或组装过程展示]
+      </div>
+
+      <section class="content-section">
+        <h2>最近的折腾项目</h2>
+        
+        <h3>🛠️ 项目 1：家庭 NAS 搭建</h3>
+        <p>
+          使用旧的笔记本电脑和树莓派搭建家庭存储和备份系统。在这个过程中学到了网络存储、数据同步和备份策略。
+        </p>
+        
+        <h3>🛠️ 项目 2：定制 ROM 开发</h3>
+        <p>
+          为备用手机刷入定制 ROM，去除不必要的预装应用，优化性能。体验了 Android 系统级别的定制。
+        </p>
+        
+        <h3>🛠️ 项目 3：无线充电改装</h3>
+        <p>
+          为不支持无线充电的设备加装无线充电模块。小小的硬件黑客，大大的便利。
+        </p>
+      </section>
+
+      <section class="content-section">
+        <h2>折腾的收获</h2>
+        <ul>
+          <li><strong>技术深度：</strong>从用户变成开发者，理解硬件和软件的交互</li>
+          <li><strong>环保意识：</strong>让旧设备重获新生，减少电子垃圾</li>
+          <li><strong>创意解决：</strong>用有限的资源解决无限的问题</li>
+          <li><strong>社区学习：</strong>在论坛和社区中分享经验，学习他人的想法</li>
+          <li><strong>成就感：</strong>看到一台废旧设备在自己手中重新工作的快乐</li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <h2>推荐资源</h2>
+        <p>
+          如果你对数码折腾感兴趣，这些地方是很好的起点：
+        </p>
+        <ul>
+          <li>Hackaday - 硬件项目分享平台</li>
+          <li>XDA Developers - Android 定制 ROM 论坛</li>
+          <li>树莓派官方网站 - 单板计算机项目</li>
+          <li>iFixit - 拆解和维修指南</li>
+          <li>本地的制造者空间和创意工坊</li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <h2>更多兴趣</h2>
+        <ul>
+          <li><a href="./travel.html" style="color: var(--color-accent);">探索极限旅行 →</a></li>
+          <li><a href="./architecture.html" style="color: var(--color-accent);">了解古建筑 →</a></li>
+          <li><a href="./aerospace.html" style="color: var(--color-accent);">仰望太空 →</a></li>
+          <li><a href="../index.html#interests" style="color: var(--color-accent);">返回兴趣魔盒 →</a></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div>
+          © 2026 朱子青 | 基于 MIT 协议开源
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com" target="_blank">GitHub</a>
+          <a href="mailto:your-email@example.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

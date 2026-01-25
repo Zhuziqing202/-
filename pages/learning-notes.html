@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>学习笔记 — 朱子青</title>
+  
+  <style>
+    /* 设计系统变量 */
+    :root {
+      --color-bg: #fafbfc;
+      --color-card: #ffffff;
+      --color-text: #1a202c;
+      --color-text-light: #718096;
+      --color-border: #e2e8f0;
+      --color-accent: #4f46e5;
+      --color-accent-light: #eef2ff;
+      
+      --sp-xs: 4px;
+      --sp-sm: 8px;
+      --sp-md: 16px;
+      --sp-lg: 24px;
+      --sp-xl: 32px;
+      --sp-2xl: 48px;
+      
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08);
+      
+      --transition-fast: 150ms ease;
+      --transition-base: 250ms ease;
+    }
+    
+    /* 重置样式 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* 容器和布局 */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 var(--sp-md);
+    }
+    
+    /* 头部导航 */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 251, 252, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--sp-md) 0;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 var(--sp-md);
+    }
+    
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-sm);
+      padding: var(--sp-sm) var(--sp-md);
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      color: var(--color-accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    
+    .back-button:hover {
+      border-color: var(--color-accent);
+      box-shadow: var(--shadow-md);
+    }
+    
+    /* 主要内容 */
+    main {
+      padding: var(--sp-2xl) 0;
+    }
+    
+    .page-title {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: var(--sp-md);
+      letter-spacing: -1px;
+    }
+    
+    .page-subtitle {
+      font-size: 18px;
+      color: var(--color-text-light);
+      margin-bottom: var(--sp-2xl);
+      line-height: 1.8;
+    }
+    
+    /* 内容区域 */
+    .content-section {
+      margin-bottom: var(--sp-2xl);
+    }
+    
+    .content-section h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: var(--sp-lg);
+      color: var(--color-text);
+      border-bottom: 2px solid var(--color-accent-light);
+      padding-bottom: var(--sp-md);
+    }
+    
+    .content-section h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: var(--sp-xl);
+      margin-bottom: var(--sp-md);
+      color: var(--color-text);
+    }
+    
+    .content-section p {
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: var(--sp-lg);
+      color: var(--color-text);
+    }
+    
+    .content-section ul,
+    .content-section ol {
+      margin-left: var(--sp-lg);
+      margin-bottom: var(--sp-lg);
+      color: var(--color-text);
+    }
+    
+    .content-section li {
+      margin-bottom: var(--sp-md);
+      line-height: 1.8;
+    }
+    
+    /* 笔记卡片 */
+    .note-card {
+      background: var(--color-accent-light);
+      border-left: 4px solid var(--color-accent);
+      padding: var(--sp-lg);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--sp-xl);
+    }
+    
+    .note-card h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: var(--sp-md);
+      color: var(--color-accent);
+    }
+    
+    .note-card p {
+      margin-bottom: var(--sp-md);
+      color: var(--color-text);
+    }
+    
+    .note-card p:last-child {
+      margin-bottom: 0;
+    }
+    
+    /* 书籍/资源列表 */
+    .resource-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .resource-item {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-lg);
+      margin-bottom: var(--sp-md);
+      transition: all var(--transition-fast);
+    }
+    
+    .resource-item:hover {
+      border-color: var(--color-accent);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .resource-item strong {
+      color: var(--color-accent);
+      display: block;
+      margin-bottom: var(--sp-sm);
+    }
+    
+    .resource-item p {
+      margin-bottom: 0;
+      font-size: 14px;
+      color: var(--color-text-light);
+    }
+    
+    /* 关键词标签 */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp-sm);
+      margin: var(--sp-lg) 0;
+    }
+    
+    .tag {
+      display: inline-block;
+      padding: var(--sp-sm) var(--sp-md);
+      background: var(--color-accent-light);
+      color: var(--color-accent);
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 600;
+    }
+    
+    /* 页脚 */
+    footer {
+      border-top: 1px solid var(--color-border);
+      padding: var(--sp-2xl) 0;
+      color: var(--color-text-light);
+      font-size: 14px;
+      margin-top: var(--sp-2xl);
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--sp-lg);
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: var(--sp-lg);
+    }
+    
+    .footer-links a {
+      color: var(--color-text-light);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+    
+    .footer-links a:hover {
+      color: var(--color-accent);
+    }
+    
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .page-title {
+        font-size: 32px;
+      }
+      
+      .page-subtitle {
+        font-size: 16px;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 头部导航 -->
+  <header>
+    <div class="header-content">
+      <a href="../index.html" class="back-button">← 返回首页</a>
+      <span style="color: var(--color-text-light); font-size: 14px;">关于我</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- 页面标题 -->
+      <h1 class="page-title">学习笔记</h1>
+      <p class="page-subtitle">
+        心理学专业知识、读书笔记和学习记录。记录在探索中的收获和启发。
+      </p>
+
+      <!-- 心理学笔记 -->
+      <section class="content-section">
+        <h2>心理学专业笔记</h2>
+        
+        <h3>📚 心理学理论体系</h3>
+        <p>
+          心理学是研究人的心理现象和行为规律的科学。作为一个发展中的学科，它包含了许多不同的学派和理论。
+        </p>
+        
+        <div class="note-card">
+          <h4>🧠 主要流派概览</h4>
+          <p>
+            <strong>行为主义</strong>：强调观察行为，认为心理现象可以通过刺激-反应模式解释。
+          </p>
+          <p>
+            <strong>认知心理学</strong>：关注思维过程和信息处理，强调心理是主动的、有目的的。
+          </p>
+          <p>
+            <strong>人本主义心理学</strong>：强调个人成长、自我实现和自由意志，关注人的潜能。
+          </p>
+          <p>
+            <strong>精神分析</strong>：探讨无意识心理、早年经历对人格的影响，重视梦境和自由联想。
+          </p>
+        </div>
+        
+        <p>
+          这些理论各有其洞见，但也各有其局限。现代心理学倾向于整合这些流派，建立更全面的理解。
+        </p>
+        
+        <h3>📖 重要概念</h3>
+        
+        <div class="tags">
+          <div class="tag">认知失调</div>
+          <div class="tag">心理防御机制</div>
+          <div class="tag">自我效能感</div>
+          <div class="tag">依恋理论</div>
+          <div class="tag">流体智力</div>
+        </div>
+        
+        <p>
+          这些概念在日常生活中处处可见。比如：
+        </p>
+        <ul>
+          <li><strong>认知失调：</strong>当你的信念和行为不一致时产生的不舒适感，推动你改变想法或行为</li>
+          <li><strong>心理防御机制：</strong>如否认、投射、合理化——它们保护我们免受焦虑，但如果过度使用会导致问题</li>
+          <li><strong>自我效能感：</strong>你对自己完成任务能力的信念，直接影响实际表现</li>
+          <li><strong>依恋理论：</strong>早年与照顾者的关系模式如何塑造我们对他人的信任和亲密关系的模式</li>
+        </ul>
+      </section>
+
+      <!-- 读书笔记 -->
+      <section class="content-section">
+        <h2>读书笔记与推荐</h2>
+        <p>
+          以下是我阅读的对我有深刻影响的书籍和相关笔记：
+        </p>
+        
+        <ul class="resource-list">
+          <li class="resource-item">
+            <strong>📕 《心理急救：拯救你的心理健康》</strong>
+            <p>入门级的心理学知识，帮助理解常见的心理困境及其解决方案。</p>
+          </li>
+          
+          <li class="resource-item">
+            <strong>📗 《你的人生意义是什么》</strong>
+            <p>关于人生意义、价值观与幸福的哲学思考，与心理学交织在一起。</p>
+          </li>
+          
+          <li class="resource-item">
+            <strong>📘 《亲密关系：通往灵魂的桥梁》</strong>
+            <p>深入探讨亲密关系中的心理动力，对理解自己和他人关系很有帮助。</p>
+          </li>
+          
+          <li class="resource-item">
+            <strong>📙 《心流：最优体验心理学》</strong>
+            <p>米哈里·契克森米哈的经典著作，解释为什么某些活动能给我们深刻的满足感。</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 当前学习方向 -->
+      <section class="content-section">
+        <h2>当前探索方向</h2>
+        
+        <h3>🔍 社会心理学</h3>
+        <p>
+          对群体行为、社会影响和人际互动的深入理解。这直接影响我对人类社会的认知。
+        </p>
+        <p>
+          关键问题：为什么人在集体中的行为会改变？我们如何在社会压力下维持自洽？
+        </p>
+        
+        <h3>🔍 积极心理学</h3>
+        <p>
+          超越"治疗心理问题"，积极心理学关注人的幸福、成长和优势。这与我对自洽生活的追求相呼应。
+        </p>
+        <p>
+          核心观点：不仅要修复什么是"破碎的"，更要培养什么是"美好的"。
+        </p>
+        
+        <h3>🔍 发展心理学</h3>
+        <p>
+          从婴儿期到老年期，人如何发展和改变。理解这一点帮助我更宽容地看待人生的各个阶段。
+        </p>
+      </section>
+
+      <!-- 学习思考 -->
+      <section class="content-section">
+        <h2>学习中的反思</h2>
+        
+        <div class="note-card">
+          <h4>💡 心理学的局限与力量</h4>
+          <p>
+            心理学不能"修复"每个人，也不能解释所有人类行为。但它提供了一种理解自己和他人的框架。
+          </p>
+          <p>
+            真正的改变来自个人的自觉和行动，心理学只是提供地图，你必须自己走这条路。
+          </p>
+        </div>
+        
+        <h3>📝 笔记整理系统</h3>
+        <p>
+          我使用以下方法整理和复习笔记：
+        </p>
+        <ul>
+          <li><strong>Cornell 笔记法：</strong>左侧记关键点，右侧详细记录，底部写总结</li>
+          <li><strong>思维导图：</strong>理解理论之间的关联和层级</li>
+          <li><strong>费曼学习法：</strong>用简单的语言解释复杂概念，发现自己的知识漏洞</li>
+          <li><strong>定期复习：</strong>间隔重复以加强记忆和理解</li>
+        </ul>
+      </section>
+
+      <!-- 应用实践 -->
+      <section class="content-section">
+        <h2>将知识应用于生活</h2>
+        <p>
+          心理学不仅是学术知识，更是可以每天应用的生活智慧：
+        </p>
+        <ul>
+          <li>当感到焦虑时，识别焦虑的来源，而不是盲目逃避</li>
+          <li>在人际冲突中，尝试理解他人的心理视角和防御机制</li>
+          <li>在做重要决决策前，检查自己是否在运用合理化而非真正思考</li>
+          <li>养成增长思维，相信自己可以通过努力改变和学习</li>
+        </ul>
+      </section>
+
+      <!-- 继续学习 -->
+      <section class="content-section">
+        <h2>未来的学习计划</h2>
+        <p>
+          学习永远不会结束，我计划深入研究的领域包括：
+        </p>
+        <ul>
+          <li>心理治疗的各种方法和其背后的理论基础</li>
+          <li>文化心理学：不同文化如何影响心理现象</li>
+          <li>神经心理学：大脑如何产生心理现象</li>
+          <li>应用心理学在教育、组织管理中的实践</li>
+        </ul>
+      </section>
+
+      <!-- CTA -->
+      <section class="content-section">
+        <h2>分享与讨论</h2>
+        <p>
+          如果你对这些笔记感兴趣，或者想讨论相关话题，欢迎：
+        </p>
+        <ul>
+          <li><a href="./thoughts.html" style="color: var(--color-accent);">查看我的个人思考 →</a></li>
+          <li><a href="mailto:your-email@example.com" style="color: var(--color-accent);">发送邮件讨论 →</a></li>
+          <li><a href="../index.html#projects" style="color: var(--color-accent);">查看相关科研项目 →</a></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <!-- 页脚 -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div>
+          © 2026 朱子青 | 基于 MIT 协议开源
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com" target="_blank">GitHub</a>
+          <a href="mailto:your-email@example.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
