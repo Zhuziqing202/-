@@ -18,13 +18,13 @@
       --color-accent: #4f46e5;        /* 强调色 */
       --color-accent-light: #eef2ff;  /* 强调色浅 */
       
-      /* 间距 */
+      /* 间距 - 优化版本 */
       --sp-xs: 4px;
       --sp-sm: 8px;
       --sp-md: 16px;
-      --sp-lg: 24px;
-      --sp-xl: 32px;
-      --sp-2xl: 48px;
+      --sp-lg: 20px;
+      --sp-xl: 28px;
+      --sp-2xl: 40px;
       
       /* 圆角 */
       --radius-sm: 8px;
@@ -119,9 +119,9 @@
     
     /* ===== HERO SECTION (欢迎层) ===== */
     .hero {
-      padding: var(--sp-2xl) 0;
+      padding: 50px 0 35px;
       text-align: center;
-      min-height: 60vh;
+      min-height: 45vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -129,19 +129,19 @@
     }
     
     .hero h1 {
-      font-size: 48px;
+      font-size: 44px;
       font-weight: 700;
-      margin-bottom: var(--sp-md);
+      margin-bottom: 12px;
       line-height: 1.2;
       letter-spacing: -1px;
     }
     
     .hero .subtitle {
-      font-size: 18px;
+      font-size: 16px;
       color: var(--color-text-light);
-      margin-bottom: var(--sp-xl);
+      margin-bottom: 18px;
       max-width: 600px;
-      line-height: 1.8;
+      line-height: 1.7;
     }
     
     .cta-buttons {
@@ -155,11 +155,11 @@
       display: inline-flex;
       align-items: center;
       gap: var(--sp-sm);
-      padding: var(--sp-sm) var(--sp-lg);
+      padding: 8px 16px;
       border-radius: var(--radius-lg);
       border: none;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 13px;
       cursor: pointer;
       transition: all var(--transition-fast);
       text-decoration: none;
@@ -189,41 +189,41 @@
     
     /* ===== SECTION COMMON STYLES ===== */
     section {
-      padding: var(--sp-2xl) 0;
+      padding: 30px 0;
       border-top: 1px solid var(--color-border);
     }
     
     .section-header {
-      margin-bottom: var(--sp-2xl);
+      margin-bottom: 18px;
     }
     
     .section-title {
-      font-size: 32px;
+      font-size: 28px;
       font-weight: 700;
-      margin-bottom: var(--sp-md);
+      margin-bottom: 10px;
       letter-spacing: -0.5px;
     }
     
     .section-subtitle {
-      font-size: 16px;
+      font-size: 15px;
       color: var(--color-text-light);
-      line-height: 1.8;
+      line-height: 1.7;
       max-width: 800px;
     }
     
     /* ===== 第一部分：作品与技术 ===== */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: var(--sp-xl);
-      margin-top: var(--sp-xl);
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      margin-top: 14px;
     }
     
     .project-card {
       background: var(--color-card);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-lg);
-      padding: var(--sp-xl);
+      padding: 18px;
       cursor: pointer;
       transition: all var(--transition-base);
       position: relative;
@@ -253,14 +253,14 @@
     }
     
     .project-icon {
-      font-size: 32px;
-      margin-bottom: var(--sp-md);
+      font-size: 28px;
+      margin-bottom: 10px;
     }
     
     .project-card h3 {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 600;
-      margin-bottom: var(--sp-sm);
+      margin-bottom: 6px;
       color: var(--color-text);
     }
     
@@ -271,10 +271,10 @@
     }
     
     .project-arrow {
-      margin-top: var(--sp-lg);
+      margin-top: 10px;
       color: var(--color-accent);
       font-weight: 600;
-      font-size: 14px;
+      font-size: 13px;
       display: inline-flex;
       gap: var(--sp-sm);
     }
@@ -283,21 +283,22 @@
     .about-content {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: var(--sp-xl);
+      gap: 18px;
       align-items: start;
-      margin-top: var(--sp-xl);
+      margin-top: 14px;
     }
     
     .about-text {
       background: var(--color-accent-light);
-      padding: var(--sp-xl);
+      padding: 18px;
       border-radius: var(--radius-lg);
-      line-height: 1.8;
+      line-height: 1.7;
     }
     
     .about-text p {
-      margin-bottom: var(--sp-lg);
+      margin-bottom: 12px;
       color: var(--color-text);
+      font-size: 15px;
     }
     
     .about-text strong {
@@ -308,14 +309,14 @@
     .about-links {
       display: flex;
       flex-direction: column;
-      gap: var(--sp-md);
+      gap: 12px;
     }
     
     .about-link-card {
       background: var(--color-card);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-lg);
-      padding: var(--sp-lg);
+      padding: 14px 16px;
       cursor: pointer;
       transition: all var(--transition-fast);
       text-decoration: none;
@@ -328,31 +329,32 @@
     }
     
     .about-link-card h4 {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
       color: var(--color-text);
-      margin-bottom: var(--sp-sm);
+      margin-bottom: 5px;
     }
     
     .about-link-card p {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--color-text-light);
       margin: 0;
+      line-height: 1.6;
     }
     
     /* ===== 第三部分：多元兴趣（兴趣魔盒）===== */
     .interests-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: var(--sp-lg);
-      margin-top: var(--sp-xl);
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
     }
     
     .interest-card {
       background: var(--color-card);
       border: 2px solid var(--color-border);
       border-radius: var(--radius-lg);
-      padding: var(--sp-xl);
+      padding: 16px 14px;
       text-align: center;
       cursor: pointer;
       transition: all var(--transition-slow);
@@ -384,8 +386,8 @@
     }
     
     .interest-emoji {
-      font-size: 48px;
-      margin-bottom: var(--sp-md);
+      font-size: 40px;
+      margin-bottom: 8px;
       display: inline-block;
       transition: transform var(--transition-base);
     }
@@ -395,28 +397,28 @@
     }
     
     .interest-card h3 {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 600;
-      margin-bottom: var(--sp-md);
+      margin-bottom: 6px;
       color: var(--color-text);
     }
     
     .interest-card p {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--color-text-light);
-      line-height: 1.7;
-      margin-bottom: var(--sp-md);
+      line-height: 1.6;
+      margin-bottom: 8px;
     }
     
     .interest-button {
       display: inline-block;
-      padding: var(--sp-sm) var(--sp-lg);
+      padding: 6px 12px;
       background: var(--color-accent-light);
       color: var(--color-accent);
       border-radius: var(--radius-md);
       text-decoration: none;
       font-weight: 600;
-      font-size: 13px;
+      font-size: 12px;
       transition: all var(--transition-fast);
     }
     
@@ -428,10 +430,10 @@
     /* ===== 页脚 ===== */
     footer {
       border-top: 1px solid var(--color-border);
-      padding: var(--sp-2xl) 0;
+      padding: 24px 0;
       color: var(--color-text-light);
-      font-size: 14px;
-      margin-top: var(--sp-2xl);
+      font-size: 13px;
+      margin-top: 24px;
     }
     
     .footer-content {
@@ -460,20 +462,21 @@
     /* ===== 响应式设计 ===== */
     @media (max-width: 768px) {
       .hero {
-        min-height: 50vh;
-        padding: var(--sp-xl) 0;
+        min-height: 38vh;
+        padding: 32px 0;
       }
       
       .hero h1 {
-        font-size: 36px;
+        font-size: 32px;
       }
       
       .hero .subtitle {
-        font-size: 16px;
+        font-size: 14px;
+        margin-bottom: 14px;
       }
       
       .section-title {
-        font-size: 24px;
+        font-size: 22px;
       }
       
       .about-content {
@@ -722,327 +725,5 @@
       </div>
     </div>
   </footer>
-</body>
-</html>
-
-    /* modal */
-    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:80}
-    .modal.show{display:flex}
-    .modal-backdrop{position:absolute;inset:0;background:rgba(4,8,14,0.6);backdrop-filter:blur(6px)}
-    .modal-content{position:relative;background:var(--card);padding:18px;border-radius:12px;max-width:820px;width:90%;z-index:81;box-shadow:var(--shadow)}
-    .modal-close{position:absolute;right:10px;top:8px;border:none;background:transparent;font-size:20px;cursor:pointer}
-
-    /* travel map */
-    .map{position:relative;height:420px;border-radius:12px;background:linear-gradient(180deg,#ffffff,#f3f6fa);box-shadow:var(--shadow);overflow:hidden}
-    .map-bg{position:absolute;inset:0;opacity:0.06;background-image:linear-gradient(135deg,transparent 20%,rgba(0,0,0,0.02));}
-    .marker{position:absolute;transform:translate(-50%,-50%);width:18px;height:18px;border-radius:50%;background:linear-gradient(180deg,#2b8cff,#1565d8);display:grid;place-items:center;color:#fff;text-decoration:none}
-    .marker span{position:absolute;top:26px;left:50%;transform:translateX(-50%);background:var(--card);padding:6px 8px;border-radius:8px;color:var(--accent);box-shadow:var(--shadow);display:none;white-space:nowrap;font-weight:700;font-size:13px}
-    .marker:hover span{display:block}
-
-    /* toast */
-    .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:28px;background:var(--accent-2);color:#fff;padding:10px 16px;border-radius:999px;box-shadow:var(--shadow);display:none;z-index:90}
-    .toast.show{display:block}
-  </style>
-</head>
-<body data-theme="light">
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="logo">朱子</div>
-        <div>
-          <div style="font-weight:800">朱子青</div>
-          <div style="font-size:12px;color:var(--muted)">前端 · 界面设计</div>
-        </div>
-      </div>
-      <nav aria-label="主导航">
-        <a href="#about">关于</a>
-        <a href="#projects">作品</a>
-        <a href="#fun">趣味</a>
-        <a href="#contact">联系</a>
-      </nav>
-      <div class="controls">
-        <button id="themeToggle" class="btn ghost" aria-label="切换主题">切换主题</button>
-        <div id="visitor" style="padding:8px 10px;border-radius:10px;background:transparent;color:var(--muted);font-weight:600">访客: 0</div>
-      </div>
-    </header>
-
-    <main>
-      <section class="hero" id="home">
-        <div class="hero-left">
-          <h1>你好，我是朱子青 — 极简前端与界面设计</h1>
-          <p>学生 &middot; 专注于前端工程与交互细节；喜欢把复杂的问题简化为优雅的界面与良好的体验。</p>
-          <div class="cta">
-            <a class="btn" href="#projects">查看作品</a>
-            <button class="btn ghost" id="contactCTABtn">联系我</button>
-          </div>
-          <p style="margin-top:16px;color:var(--muted)">设计理念：简单、有序、让人愉悦。</p>
-        </div>
-
-        <div class="hero-right" aria-hidden="false">
-          <div class="bg-anim" aria-hidden="true"></div>
-          <div class="avatar-visual" role="img" aria-label="朱子青头像">
-            <!-- 占位头像，可替换为真实图片 -->
-            <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='100%25' height='100%25' rx='24' fill='%23e6eefb'/%3E%3Ctext x='50%25' y='54%25' font-family='-apple-system,Segoe UI,Roboto' font-size='48' text-anchor='middle' fill='%23111'%3E朱子青%3C/text%3E%3C/svg%3E" alt="朱子青">
-          </div>
-        </div>
-      </section>
-
-      <section id="about">
-        <div class="section-title"><h2>关于我</h2><div style="color:var(--muted);font-weight:600">完整的我 · 学习与生活并重</div></div>
-        <div class="cards">
-          <div class="card">
-            <h3>学术与研究</h3>
-            <p style="color:var(--muted)">本科专业：XXXXX；研究方向：睡眠与认知（示例）。参与若干项目与论文发表。</p>
-          </div>
-          <div class="card">
-            <h3>生活与兴趣</h3>
-            <p style="color:var(--muted)">爱好摄影、跑步与阅读心理学。热衷于 UI 设计与动效实现。</p>
-          </div>
-          <div class="card">
-            <h3>时间线</h3>
-            <ul style="color:var(--muted);padding-left:18px;margin:0">
-              <li>2021 — 本科入学 / 主修前端相关课程</li>
-              <li>2023 — 参与睡眠研究项目，负责数据可视化</li>
-              <li>2024 — 构建个人作品集并持续发布小项目</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="projects">
-        <div class="section-title"><h2>作品集</h2><div style="color:var(--muted);font-weight:600">精选项目一览</div></div>
-        <div class="cards">
-          <div class="card">
-            <h4>时间管理助手</h4>
-            <p style="margin:6px 0;color:var(--muted)">为考研学生打造的时间记录工具，支持科目分类与每日统计，帮助形成高效学习习惯。</p>
-            <p style="font-weight:600">亮点：简洁界面 · 科目分组统计 · 学习时长可视化</p>
-            <div style="margin-top:8px"><a class="btn ghost" href="#" data-title="时间管理助手" data-desc="记录每日学习时间，按科目统计并可视化学习进度。" data-demo="" data-src="">详情</a></div>
-          </div>
-
-          <div class="card">
-            <h4>睡眠优化应用</h4>
-            <p style="margin:6px 0;color:var(--muted)">基于睡眠时间与行为数据生成个性化睡眠报告，提供可执行的改善建议，注重温暖与可读性的解读。</p>
-            <p style="font-weight:600">亮点：AI 睡眠解读 · 数据驱动分析 · 可操作改善方案</p>
-            <div style="margin-top:8px"><a class="btn ghost" href="#" data-title="睡眠优化应用" data-desc="结合用户睡眠数据与科学指南，生成个性化睡眠报告与建议。" data-demo="" data-src="">详情</a></div>
-          </div>
-
-          <div class="card">
-            <h4>神经反馈入眠诱导系统（大创）</h4>
-            <p style="margin:6px 0;color:var(--muted)">结合神经反馈技术实现的入眠辅助系统，已在小规模实验中验证其对入睡效率的影响。</p>
-            <p style="font-weight:600">亮点：实时反馈 · 实验验证 · 创新入眠策略</p>
-            <div style="margin-top:8px"><a class="btn ghost" href="#" data-title="神经反馈入眠诱导系统" data-desc="基于神经反馈的入眠辅助系统，包含实时监测与反馈逻辑。" data-demo="" data-src="">详情</a></div>
-          </div>
-
-          <div class="card">
-            <h4>个人研究项目（体动与光暴露）</h4>
-            <p style="margin:6px 0;color:var(--muted)">利用体动记录与光照数据研究日间活动对夜间睡眠的影响，为睡眠干预提供数据支持。</p>
-            <p style="font-weight:600">亮点：精确数据采集 · 行为-光照关联分析 · 可扩展性强</p>
-            <div style="margin-top:8px"><a class="btn ghost" href="#" data-title="体动与光暴露研究" data-desc="研究日间活动与光照对睡眠的影响，结合客观生理数据进行分析。" data-demo="" data-src="">详情</a></div>
-          </div>
-
-          <div class="card">
-            <h4>其他兴趣项目</h4>
-            <p style="margin:6px 0;color:var(--muted)">若干心理学工具、小型硬件与实用工具集合，强调实验验证与用户体验。</p>
-            <p style="font-weight:600">亮点：技术与心理学结合 · 实用性与趣味并重</p>
-            <div style="margin-top:8px"><a class="btn ghost" href="#" data-title="其他兴趣项目" data-desc="包含心理学工具、硬件小玩意以及实用软件工具的集合。" data-demo="" data-src="">详情</a></div>
-          </div>
-        </div>
-      </section>
-
-      <section id="fun">
-        <div class="section-title"><h2>有趣功能</h2><div style="color:var(--muted);font-weight:600">交互与小玩意儿</div></div>
-        <div class="cards">
-          <div class="card">
-            <h4>主题切换</h4>
-            <p style="color:var(--muted)">支持亮/暗两套主题，切换后界面会记住你的偏好。</p>
-          </div>
-          <div class="card">
-            <h4>访客计数器</h4>
-            <p style="color:var(--muted)">简单的本地访客计数（示例）。</p>
-          </div>
-          <div class="card">
-            <h4>动态背景</h4>
-            <p style="color:var(--muted)">Hero 区使用 CSS 渐变动效，带来轻盈体验。</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="blog">
-        <div class="section-title"><h2>博客 / 日志（示例）</h2><div style="color:var(--muted);font-weight:600">心理学笔记 & 开发随笔</div></div>
-        <div class="cards">
-          <div class="card"><h4>如何做可解释的实验可视化</h4><p style="color:var(--muted)">简短摘要与标签。</p></div>
-          <div class="card"><h4>从设计到实现：颜色系统实践</h4><p style="color:var(--muted)">主题与无障碍考虑。</p></div>
-        </div>
-      </section>
-
-      <section id="travel">
-        <div class="section-title"><h2>旅行足迹</h2><div style="color:var(--muted);font-weight:600">我去过的城市（点击查看游记）</div></div>
-        <div class="card">
-          <div class="map" aria-label="中国旅行地图">
-            <!-- 背景可替换为真正的中国地图 SVG 或图片 -->
-            <div class="map-bg" aria-hidden="true"></div>
-            <!-- 标记（位置为近似百分比，可按需微调） -->
-            <a class="marker" href="travel/beijing.html" style="left:50%;top:18%" aria-label="北京"><span>北京</span></a>
-            <a class="marker" href="travel/shanghai.html" style="left:68%;top:45%" aria-label="上海"><span>上海</span></a>
-            <a class="marker" href="travel/guangzhou.html" style="left:66%;top:72%" aria-label="广州"><span>广州</span></a>
-            <a class="marker" href="travel/chengdu.html" style="left:36%;top:56%" aria-label="成都"><span>成都</span></a>
-            <a class="marker" href="travel/hangzhou.html" style="left:70%;top:48%" aria-label="杭州"><span>杭州</span></a>
-          </div>
-        </div>
-
-        <div class="cards" style="margin-top:12px">
-          <div class="card"><a href="travel/beijing.html">北京 — 游记</a></div>
-          <div class="card"><a href="travel/shanghai.html">上海 — 游记</a></div>
-          <div class="card"><a href="travel/guangzhou.html">广州 — 游记</a></div>
-          <div class="card"><a href="travel/chengdu.html">成都 — 游记</a></div>
-          <div class="card"><a href="travel/hangzhou.html">杭州 — 游记</a></div>
-        </div>
-      </section>
-
-      <section id="contact">
-        <div class="section-title"><h2>联系我</h2><div style="color:var(--muted);font-weight:600">邮箱、GitHub 与简易留言</div></div>
-        <div style="display:grid;grid-template-columns:1fr 320px;gap:20px">
-          <div>
-            <p style="color:var(--muted)">邮箱：2206603382@qq.com</p>
-            <p style="color:var(--muted)">GitHub：<a href="https://github.com/" target="_blank">Zhuziqing202</a></p>
-            <p style="color:var(--muted)">更多社交：B站 / 微信（可替换）</p>
-          </div>
-          <div>
-            <form class="contact-form" onsubmit="return handleContact(event)">
-              <input type="text" id="name" placeholder="你的名字" required />
-              <input type="email" id="email" placeholder="你的邮箱" required />
-              <textarea id="message" rows="4" placeholder="留言内容（示例不会发送）" required></textarea>
-              <div style="display:flex;gap:8px">
-                <button class="btn" type="submit">发送</button>
-                <button type="button" class="btn ghost" onclick="fillDemo()">示例填充</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div>© 2026 朱子青</div>
-      <div style="display:flex;gap:8px">
-        <a href="#" style="color:var(--muted)">GitHub</a>
-        <a href="#" style="color:var(--muted)">邮箱</a>
-      </div>
-    </footer>
-  </div>
-
-  <script>
-    // 主题切换并记忆偏好
-    const themeToggle = document.getElementById('themeToggle');
-    const root = document.body;
-    const stored = localStorage.getItem('zhuu_theme');
-    if(stored) root.setAttribute('data-theme', stored);
-    function toggleTheme(){
-      const cur = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', cur);
-      localStorage.setItem('zhuu_theme', cur);
-    }
-    themeToggle.addEventListener('click', toggleTheme);
-
-    // 访客计数（本地示例）
-    const visitorEl = document.getElementById('visitor');
-    let visits = Number(localStorage.getItem('zhuu_visits') || 0);
-    visits += 1; localStorage.setItem('zhuu_visits', visits);
-    visitorEl.textContent = '访客: ' + visits;
-
-    // 联系表单示例处理
-    function handleContact(e){
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      alert('已收到你的留言（示例）：\n' + name + '，谢谢！');
-      e.target.reset();
-      return false;
-    }
-    function fillDemo(){
-      document.getElementById('name').value = '访客示例';
-      document.getElementById('email').value = 'example@mail.com';
-      document.getElementById('message').value = '你好，这是示例留言。';
-    }
-
-    // CTA 跳转到表单
-    document.getElementById('contactCTABtn').addEventListener('click',()=>{
-      location.hash = '#contact';
-      setTimeout(()=>{document.getElementById('name').focus()},300);
-    });
-  </script>
-  <!-- modal + toast -->
-  <div id="modal" class="modal" aria-hidden="true">
-    <div class="modal-backdrop" tabindex="-1" data-close></div>
-    <div class="modal-content" role="dialog" aria-modal="true">
-      <button class="modal-close" aria-label="关闭">×</button>
-      <div id="modal-body"></div>
-    </div>
-  </div>
-
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
-
-  <script>
-    // Modal handling
-    const modal = document.getElementById('modal');
-    const modalBody = document.getElementById('modal-body');
-    function openModal(html){
-      modalBody.innerHTML = html;
-      modal.classList.add('show');
-      modal.setAttribute('aria-hidden','false');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeModal(){
-      modal.classList.remove('show');
-      modal.setAttribute('aria-hidden','true');
-      modalBody.innerHTML = '';
-      document.body.style.overflow = '';
-    }
-    // delegate project link clicks
-    document.addEventListener('click', (e)=>{
-      const a = e.target.closest('a[data-title]');
-      if(!a) return;
-      e.preventDefault();
-      const title = a.dataset.title || '';
-      const desc = a.dataset.desc || '';
-      const demo = a.dataset.demo || '';
-      const src = a.dataset.src || '';
-      let html = `<h3>${title}</h3><p style="color:var(--muted)">${desc}</p>`;
-      if(demo) html += `<p><a href="${demo}" target="_blank" class="btn">打开演示</a></p>`;
-      if(src) html += `<p><a href="${src}" target="_blank" class="btn ghost">查看源码</a></p>`;
-      openModal(html);
-    });
-    // close handlers
-    modal.querySelector('.modal-close').addEventListener('click', closeModal);
-    modal.querySelector('[data-close]').addEventListener('click', closeModal);
-    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
-
-    // toast helper
-    const toast = document.getElementById('toast');
-    let toastTimer = null;
-    function showToast(msg, timeout=2500){
-      toast.textContent = msg;
-      toast.classList.add('show');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(()=>toast.classList.remove('show'), timeout);
-    }
-
-    // enhance contact form: save as local messages and show toast
-    function handleContact(e){
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const message = document.getElementById('message').value.trim();
-      const key = 'zhuu_messages';
-      const arr = JSON.parse(localStorage.getItem(key) || '[]');
-      arr.push({name,email,message,time:new Date().toISOString()});
-      localStorage.setItem(key, JSON.stringify(arr));
-      showToast('留言已保存（示例）');
-      e.target.reset();
-      return false;
-    }
-    // replace previous binding: ensure form uses new function
-    const form = document.querySelector('.contact-form');
-    if(form){ form.onsubmit = handleContact }
-  </script>
 </body>
 </html>
