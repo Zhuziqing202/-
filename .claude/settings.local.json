@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(iconv -f UTF-16LE -t UTF-8 \"c:/Projects/-/index.html\")",
+      "Bash(mv \"c:/Projects/-/index_utf8.html\" \"c:/Projects/-/index.html\")",
+      "Bash(python3 -c \"from PIL import Image; print\\('Pillow available'\\)\")",
+      "Bash(python3 -c ' *)",
+      "Bash(sed -i '1s/^\\\\xEF\\\\xBB\\\\xBF//' index.html)",
+      "Bash(sed -i 's/\\(max-width: 480px{/\\(max-width: 480px\\) {/' index.html)",
+      "Bash(sed -i 's/\\(entries=>/\\(entries\\) =>/' index.html)",
+      "Bash(sed -i 's/if \\(entry.isIntersecting{/if \\(entry.isIntersecting\\) {/' index.html)"
+    ]
+  }
+}

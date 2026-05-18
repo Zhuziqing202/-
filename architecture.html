@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>古建筑 — 朱子青</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --c-text: #1a1a1a;
+            --c-muted: #8e8e8e;
+            --c-accent: #2471c2;
+            --c-bg: #fff;
+            --c-border: #e5e5e5;
+        }
+
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: var(--c-bg);
+            color: var(--c-text);
+            font-size: 16px;
+            line-height: 1.7;
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        #progress-bar {
+            position: fixed; top: 0; left: 0; height: 2px;
+            background: var(--c-accent); z-index: 1000;
+            width: 0%; transition: width 0.1s linear;
+        }
+
+        header {
+            padding: 20px 0;
+            position: sticky; top: 0;
+            background: rgba(255,255,255,0.88);
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            z-index: 10;
+        }
+        header .back {
+            color: var(--c-muted); text-decoration: none; font-size: 14px;
+            transition: color 0.2s;
+        }
+        header .back:hover { color: var(--c-accent); }
+
+        article { padding: 40px 0 60px; }
+
+        article h1 {
+            font-size: 32px; font-weight: 700; letter-spacing: -0.03em;
+            line-height: 1.2; margin-bottom: 24px;
+        }
+
+        /* ══════════════════════════════════════ */
+        /*  下面你可以自由编辑内容               */
+        /* ══════════════════════════════════════ */
+
+        article p {
+            margin-bottom: 14px;
+            color: #333;
+        }
+
+        article h2 {
+            font-size: 18px; font-weight: 600;
+            margin: 28px 0 10px; letter-spacing: -0.02em;
+        }
+
+        article ul, article ol {
+            margin: 10px 0 18px 20px;
+            color: #444;
+        }
+        article li { margin-bottom: 6px; }
+
+        /* ══════════════════════════════════════ */
+
+        footer {
+            padding: 36px 0 52px; color: var(--c-muted); font-size: 13px;
+            border-top: 1px solid var(--c-border);
+        }
+
+        .back-top {
+            position: fixed; bottom: 28px; right: 28px;
+            width: 36px; height: 36px; border-radius: 50%;
+            border: 1px solid var(--c-border); background: var(--c-bg);
+            color: var(--c-muted); font-size: 18px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.35s, transform 0.35s;
+            transform: translateY(8px);
+        }
+        .back-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        .back-top:hover { color: var(--c-text); border-color: var(--c-text); }
+
+        @media (max-width: 520px) {
+            article h1 { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<header>
+    <a href="index.html" class="back">← 朱子青</a>
+</header>
+
+<article>
+    <h1>🏛️ 古建筑</h1>
+
+    <!-- ══════════════════════════════════════ -->
+    <!--  从这里开始写你的内容，自由发挥       -->
+    <!--  段落用 <p>，小标题用 <h2>            -->
+    <!--  列表用 <ul><li>                      -->
+    <!-- ══════════════════════════════════════ -->
+
+    <p>古建筑是凝固的历史。从榫卯结构到斗拱飞檐，每一处细节都承载着古人的智慧与审美。我喜欢在旅途中寻访那些被遗忘的庙宇、祠堂和民居，感受它们穿越时间的力量。</p>
+
+    <p>这些建筑不仅仅是遗迹，它们是曾经生活在这里的人们留下的注脚。</p>
+
+    <p>石窟寺已去：重庆周边大足石刻（五山已完成：宝顶山、北山、石篆山、未完成：南山、石门山）；四大石窟（莫高窟、云冈石窟、龙门石窟、麦积山石窟）；额外：炳灵寺石窟</p>
+
+    <p>古建筑已探访：应县木塔、悬空寺、佛光寺（非常推荐！！）、圣母殿</p>
+
+    <p>格鲁派寺院：塔尔寺、拉卜楞寺</p>
+
+    <!-- ══════════════════════════════════════ -->
+    <!--  内容结束                             -->
+    <!-- ══════════════════════════════════════ -->
+</article>
+
+<footer>© 2026 朱子青</footer>
+
+<button class="back-top" id="backTop" aria-label="回到顶部">↑</button>
+
+<script>
+    // Progress bar
+    (function() {
+        const bar = document.getElementById('progress-bar');
+        window.addEventListener('scroll', () => {
+            const h = document.documentElement;
+            const total = h.scrollHeight - h.clientHeight;
+            bar.style.width = total > 0 ? (h.scrollTop / total * 100) + '%' : '0%';
+        });
+    })();
+    // Back to top
+    (function() {
+        const btn = document.getElementById('backTop');
+        window.addEventListener('scroll', () => {
+            btn.classList.toggle('visible', window.scrollY > 400);
+        });
+        btn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    })();
+</script>
+</body>
+</html>

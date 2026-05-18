@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xxd)",
+      "Bash(file \"c:/Projects/-/\"*.html)"
+    ],
+    "additionalDirectories": [
+      "c:\\Projects\\-"
+    ]
+  }
+}
