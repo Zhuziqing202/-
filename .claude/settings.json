@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(xxd)",
-      "Bash(file \"c:/Projects/-/\"*.html)"
+      "Bash(file \"c:/Projects/-/\"*.html)",
+      "Bash(env)",
+      "Bash(curl -s --connect-timeout 1 http://127.0.0.1:__TRACKED_VAR__)",
+      "Bash(git config *)",
+      "Bash(git fetch *)"
     ],
     "additionalDirectories": [
       "c:\\Projects\\-"
